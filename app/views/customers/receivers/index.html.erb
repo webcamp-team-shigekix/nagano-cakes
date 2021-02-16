@@ -1,0 +1,32 @@
+<h1>配送先一覧</h1>
+
+<div class="receiver-index">
+  <% if @receivers.count == 0 %>
+    ...配送先は登録されておりません...
+  <% else %>
+    <table>
+      <thead>
+        <tr>
+          <td>配送先</td>
+          <td>郵便番号</td>
+          <td>住所</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @receivers.each do |receiver| %>
+          <tr>
+            <td><%= receiver.name %></td>
+            <td><%= receiver.postal_code %></td>
+            <td><%= receiver.address %></td>
+            <td><%= link_to '編集', edit_receiver_path(receiver.id) %></td>
+            <td><%= link_to '削除', receiver_path(receiver.id), method: :delete %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>
+
+<div class="new-receiver">
+  <%= link_to "新規配送先を追加", receivers_path, method: :post %>
+</div>
