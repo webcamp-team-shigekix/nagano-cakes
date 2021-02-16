@@ -11,4 +11,9 @@ Rails.application.routes.draw do
   }
   root to: 'homes#top'
   get '/about' => 'homes#about'
+  scope module: :customers do
+    resource :customers, only:[:show]
+  end
+  get '/customers/unsubscribe' => 'customers/customers#unsubscribe'
+  patch '/customers/withdraw' => 'customers/customers#withdraw'
 end
