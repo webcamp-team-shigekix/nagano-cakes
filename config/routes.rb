@@ -11,5 +11,7 @@ Rails.application.routes.draw do
   }
   root to: 'homes#top'
   get '/about' => 'homes#about'
-  resource :customers, only:[:show,:edit,:update]
+  scope module: :customers do
+    resource :customers, only:[:show,:edit,:update]
+  end
 end
