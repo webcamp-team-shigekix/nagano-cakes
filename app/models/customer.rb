@@ -11,4 +11,8 @@ class Customer < ApplicationRecord
   validates :first_name_kana, presence: true
   validates :phone_number, presence: true
   validates :postal_code, presence: true
+  
+  def active_for_authentication?
+    super && (self.is_deleted == false)
+  end
 end
