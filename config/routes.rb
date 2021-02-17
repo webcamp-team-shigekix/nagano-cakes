@@ -25,6 +25,7 @@ Rails.application.routes.draw do
 
   scope module: :customers do
     resource :customers, only:[:show]
+    resources :receivers
   end
   get '/customers/unsubscribe' => 'customers/customers#unsubscribe'
   patch '/customers/withdraw' => 'customers/customers#withdraw'

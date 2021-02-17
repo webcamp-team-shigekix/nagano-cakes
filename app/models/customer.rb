@@ -12,6 +12,8 @@ class Customer < ApplicationRecord
   validates :phone_number, presence: true
   validates :postal_code, presence: true
   
+  has_many :receivers, dependent: :destroy
+  
   def active_for_authentication?
     super && (self.is_deleted == false)
   end
