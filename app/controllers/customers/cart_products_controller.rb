@@ -1,7 +1,7 @@
 class Customers::CartProductsController < ApplicationController
 
   def index
-    
+    @cart_product = CartProduct.new
     # @cart_products = CartProduct.where(customer_id: current_customer.id)
     @cart_products = CartProduct.all
   end
@@ -28,6 +28,6 @@ class Customers::CartProductsController < ApplicationController
   private
 
   def cart_product_params
-    params.require(:cart_product).permit(:count, :product_id, :customer_id)
+    params.require(:cart_product).permit(:count, :product_id)
   end
 end
