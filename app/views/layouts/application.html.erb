@@ -11,7 +11,29 @@
 
   <body>
     <div class="header">
-      <%= link_to 'ロゴ',root_path %>,<%= link_to 'About', about_path %>,ログイン,新規登録,マイページ,商品一覧,カート,ログアウト<br/>
+      <%= link_to 'ロゴ（トップへ）',root_path %>,
+        <% if customer_signed_in? %>
+          <%= link_to "マイページ", customers_path %>,
+          商品一覧,カート,<%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %>
+        <% elsif admin_signed_in? %>
+          商品一覧,会員一覧,注文商品一覧,ジャンル一覧,<%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
+        <% else %>
+          <%= link_to 'About', about_path %>,
+          <%= link_to 'ログイン', new_customer_session_path %>,
+          <%= link_to '新規登録', new_customer_registration_path %>
+          <%= link_to '（開発用）管理者ログイン', new_admin_session_path %>
+        <% end %>
+
+      <div>
+        <!--開発用-->
+        <% if customer_signed_in? %>
+          [会員<%= current_customer.family_name %><%= current_customer.first_name %>としてログイン中]
+        <% elsif admin_signed_in? %>
+          [管理者としてログイン中]
+        <% else %>
+          [ログインしていない]
+        <% end %>
+      </div>
       ------------ヘッダー---------------
     </div>
     <%= yield %>
