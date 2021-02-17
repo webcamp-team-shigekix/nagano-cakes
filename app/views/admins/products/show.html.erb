@@ -1,5 +1,5 @@
 <h2>商品詳細</h2>
-<div><%= @product.image %></div>
+<div><%= attachment_image_tag(@product, :image,  fallback: "no_image.jpg") %></div>
 <div>
     <div>
         <p>商品名</p>
