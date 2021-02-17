@@ -16,4 +16,7 @@ Rails.application.routes.draw do
   end
   get '/customers/unsubscribe' => 'customers/customers#unsubscribe'
   patch '/customers/withdraw' => 'customers/customers#withdraw'
+  namespace :customers do
+    resources :cart_prodcts, only:[:index, :create, :destroy]
+  end
 end
