@@ -13,10 +13,12 @@ Rails.application.routes.draw do
   get '/about' => 'homes#about'
   scope module: :customers do
     resource :customers, only:[:show]
+    resources :receivers
   end
   get '/customers/unsubscribe' => 'customers/customers#unsubscribe'
   patch '/customers/withdraw' => 'customers/customers#withdraw'
   namespace :customers do
     resources :cart_prodcts, only:[:index, :create, :destroy]
   end
+
 end
