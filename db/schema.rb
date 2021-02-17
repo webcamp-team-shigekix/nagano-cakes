@@ -60,12 +60,14 @@ ActiveRecord::Schema.define(version: 2021_02_16_152623) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-  
+
   create_table "receivers", force: :cascade do |t|
     t.integer "customer_id"
     t.string "name"
     t.string "postal_code"
     t.string "address"
-    
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end

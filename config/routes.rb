@@ -15,19 +15,16 @@ Rails.application.routes.draw do
 
   scope module: :customers do
     resources :products, only: [:show, :index]
+    resource :customers, only:[:show]
+    resources :receivers
   end
+  
+  get '/customers/unsubscribe' => 'customers/customers#unsubscribe'
+  patch '/customers/withdraw' => 'customers/customers#withdraw'
 
   namespace :admins do
     resources :products, except: [:destroy]
     resources :product_types, except: [:new, :show, :destroy]
   end
-
-
-  scope module: :customers do
-    resource :customers, only:[:show]
-    resources :receivers
-  end
-  get '/customers/unsubscribe' => 'customers/customers#unsubscribe'
-  patch '/customers/withdraw' => 'customers/customers#withdraw'
 
 end
