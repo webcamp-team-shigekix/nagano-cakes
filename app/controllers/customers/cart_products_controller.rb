@@ -2,8 +2,10 @@ class Customers::CartProductsController < ApplicationController
 
   def index
     @cart_product = CartProduct.new
-    # @cart_products = CartProduct.where(customer_id: current_customer.id)
-    @cart_products = CartProduct.all
+    @cart_products = CartProduct.where(customer_id: current_customer.id)
+    # @cart_products = CartProduct.all
+    @tax = 1.08
+    @total_price = 0
   end
 
   def create
@@ -13,7 +15,7 @@ class Customers::CartProductsController < ApplicationController
     redirect_to customers_cart_products_path
   end
 
-  def updated
+  def update
     @cart_product = CartProduct.find(params[:id])
     @cart_product.update(cart_product_params)
     redirect_to customers_cart_products_path
@@ -22,6 +24,12 @@ class Customers::CartProductsController < ApplicationController
   def destroy
     @cart_product = CartProduct.find(params[:id])
     @cart_product.destroy
+    redirect_to customers_cart_products_path
+  end
+  
+  def destroy_all
+    @cart_products = CartProduct.where(customer_id: current_customer.id)
+    @cart_products.destroy_all
     redirect_to customers_cart_products_path
   end
 
