@@ -2,11 +2,8 @@
 
 class Admins::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
-<<<<<<< HEAD
   # before_action :reject_deleted_customer, only: [:create]
-=======
 
->>>>>>> origin/develop
 
   # GET /resource/sign_in
   # def new
@@ -24,7 +21,6 @@ class Admins::SessionsController < Devise::SessionsController
   # end
 
   # protected
-<<<<<<< HEAD
   
   # def reject_deleted_customer
   #   customer = Customer.find_by(email:[:customer][:email])
@@ -32,8 +28,7 @@ class Admins::SessionsController < Devise::SessionsController
   #     redirect_to root_path
   #   end
   # end
-=======
->>>>>>> origin/develop
+
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params
