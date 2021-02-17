@@ -1,5 +1,5 @@
 <h2>商品編集</h2>
-<%= form_with model: @product, url: admins_products_path, local:true do |f| %>
+<%= form_with model:[:admins,@product], local:true do |f| %>
   <div class="form-group">
     <%= f.label :image, "商品画像" %>
     <%= f.attachment_field :image %>

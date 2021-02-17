@@ -9,13 +9,14 @@ class Admins::ProductsController < ApplicationController
   end
 
   def index
+    
     @products = Product.all
   end
 
   def create
     @product = Product.new(product_params)
     if @product.save
-      redirect_to admins_products_path, notice: "You have created book successfully."
+      redirect_to admins_product_path(@product), notice: "You have created book successfully."
     else
       render :new
     end
@@ -29,6 +30,8 @@ class Admins::ProductsController < ApplicationController
     @product = Product.find(params[:id])
     if @product.update(product_params)
       redirect_to admins_product_path(@product), notice: "You have updated product successfully"
+    else
+      render :edit
     end
   end
 
