@@ -1,0 +1,35 @@
+<h2>カート商品</h2>
+<%= link_to "カート内削除", customers_cart_product_destroy_all_path, method: :delete %>
+<table>
+  <tr>
+    <th>商品名</th>
+    <th>単価</th>
+    <th>数量</th>
+    <th>小計</th>
+    <th></th>
+  </tr>
+  <% @cart_products.each do |cart_product| %>
+  <tr>
+    <% @taxincluded = (cart_product.product.price*@tax).floor %>
+    <% @sum = @taxincluded*cart_product.count %>
+    <td><%= cart_product.product.name %></td>
+    <td><%= @taxincluded %></td>
+    <td>
+      <%= form_with model: @cart_product, url: customers_cart_product_path(cart_product.id), local: true, method: :patch do |f| %>
+      <div class="form-group">
+      <%= f.select :count, [["1", "1"], ["2", "2"], ["3", "3"], ["4", "4"], ["5", "5"], ["6", "6"], ["7", "7"], ["8", "8"], ["9", "9"], ["10", "10"]], include_blank: "#{cart_product.count}" %>
+      </div>
+      <div class="form-group">
+      <%= f.submit '変更'%>
+      </div>
+      <% end %>
+    </td>
+    <td><%= @sum %></td>
+    <% @total_price += @sum %>
+    <td><%= link_to "削除", customers_cart_product_path(cart_product.id), method: :delete %></td>
+  </tr>
+
+  <% end %>
+
+  <%= @total_price %>
+  <%= link_to '買い物を続ける', products_path %>

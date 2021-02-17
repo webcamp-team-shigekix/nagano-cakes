@@ -1,9 +1,12 @@
 <div class="container">
     <div class="row">
-        <h3>マイページ</h3>
+        <h3><%= @customer.family_name %><%= @customer.first_name %>さんの会員詳細</h3>
         <div class="customer-info-table">
-            <h4>登録情報</h4><%= link_to "編集する", edit_customer_registration_path %>
             <table>
+                <tr>
+                    <td>会員ID</td>
+                    <td><%= @customer.id %></td>
+                </tr>
                 <tr>
                     <td>氏名</td>
                     <td><%= @customer.family_name %> <%= @customer.first_name %></td>
@@ -28,8 +31,18 @@
                     <td>メールアドレス</td>
                     <td><%= @customer.email %></td>
                 </tr>
+                <tr>
+                    <td>会員ステータス</td>
+                    <td>
+                        <% if @customer.is_deleted == false %>
+                            有効
+                        <% else %>
+                            退会
+                        <% end %>
+                    </td>
+                </tr>
             </table>
-            <h4><%= link_to '配送先一覧', receivers_path %></h4>
+            <%= link_to "編集する", edit_admins_customer_path(@customer.id) %>
             <h4>注文履歴</h4>
         </div>
     </div>
