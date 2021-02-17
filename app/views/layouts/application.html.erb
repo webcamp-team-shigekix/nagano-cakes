@@ -13,7 +13,8 @@
     <div class="header">
       <%= link_to 'ロゴ（トップへ）',root_path %>,
         <% if customer_signed_in? %>
-          マイページ,商品一覧,カート,<%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %>
+          <%= link_to "マイページ", customers_path %>,
+          商品一覧,カート,<%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %>
         <% elsif admin_signed_in? %>
           商品一覧,会員一覧,注文商品一覧,ジャンル一覧,<%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
         <% else %>

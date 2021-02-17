@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   root to: 'homes#top'
   get '/about' => 'homes#about'
 
+
   scope module: :customers do
     resources :products, only: [:show, :index]
   end
@@ -20,5 +21,12 @@ Rails.application.routes.draw do
     resources :products, except: [:destroy]
     resources :product_types, except: [:new, :show, :destroy]
   end
+
+
+  scope module: :customers do
+    resource :customers, only:[:show]
+  end
+  get '/customers/unsubscribe' => 'customers/customers#unsubscribe'
+  patch '/customers/withdraw' => 'customers/customers#withdraw'
 
 end
