@@ -1,26 +1,32 @@
 class Customers::CartProductsController < ApplicationController
   
   def index
-    @cart_prodct = CartProduct.new
-    @cart_prodcts = current_customer.cart_prodct.all
+    @cart_product = CartProduct.new
+    @cart_products = current_customer.cart_product.all
   end
   
   def create
-    cart_prodct = CartProduct.new(cart_prodct_params)
-    cart_prodct.customer = current_customer
-    cart_prodct.save
-    redirect_to customers_cart_prodcts_path
+    cart_product = CartProduct.new(cart_prodct_params)
+    cart_product.customer = current_customer
+    cart_product.save
+    redirect_to customers_cart_products_path
+  end
+  
+  def updated
+    @cart_product = CartProduct.find(params[:id])
+    @cart_product.update(cart_product_params)
+    redirect_to customers_cart_products_path
   end
   
   def destroy
-    @cart_prodct = CartProduct.find_by(params[:product_id])
-    @cart_prodct.destroy
-    redirect_to customers_cart_prodcts_path
+    @cart_product = CartProduct.find(params[:id])
+    @cart_product.destroy
+    redirect_to customers_cart_products_path
   end
   
   private
   
-  def cart_prodct_params
-    params.require(:cart_prodct).permit(:count, :product_id)
+  def cart_product_params
+    params.require(:cart_product).permit(:count, :product_id)
   end
 end

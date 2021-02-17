@@ -7,15 +7,19 @@
     <th>小計</th>
     <th></th>
   </tr>
-  <% @cart_prodcts.each do |cart_prodct| %>
+  <% @cart_products.each do |cart_product| %>
   <tr> 
-    <td><%= cart_prodct.name %></td>
-    <td><%= cart_prodct.price %></td>
-    <td><%= cart_prodct.count %></td>
+    <td><%= cart_product.name %></td>
+    <td><%= cart_product.price %></td>
+    <td>
+      <%= form_with model: @cart_product do |f| %>
+      <%= f.select :count, [["1", "1"], ["2", "2"], ["3", "3"], ["4", "4"], ["5", "5"], ["6", "6"], ["7", "7"], ["8", "8"], ["9", "9"], ["10", "10"]], value: "cart_product.count" %>
+      <%= f.submit '変更'%>
+    </td>
     <td></td>
     <td>
-      <% if cart_prodct.customer == current_customer %>
-      <%= link_to "削除", customers_cart_prodcts_path(@cart_prodct), method: :delete %>
+      <% if cart_product.customer == current_customer %>
+      <%= link_to "削除", customers_cart_products_path(@cart_product), method: :delete %>
       <% end %>
     </td>
   </tr> 
