@@ -1,0 +1,27 @@
+<h2>商品詳細</h2>
+<div><%= @product.image %></div>
+<div>
+    <div>
+        <p>商品名</p>
+        <%= @product.name %>
+    </div>
+    <div>
+        <p>商品説明</p>
+        <%= @product.description %>
+    </div>
+    <div>
+        <p>ジャンル</p>
+        <%= @product.product_type_id %>
+    </div>
+    <div>
+        <p>
+            税込価格<br>
+            （税抜価格）
+        </p>
+        <%= @product.price %>
+    </div>
+    <div>
+        <p>販売ステータス</p>
+        <%= @product.is_active
+    </div>
+</div>

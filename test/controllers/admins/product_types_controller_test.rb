@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Public::ProductsControllerTest < ActionDispatch::IntegrationTest
+class Admins::ProductTypesControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

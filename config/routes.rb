@@ -12,11 +12,11 @@ Rails.application.routes.draw do
   root to: 'homes#top'
   get '/about' => 'homes#about'
 
-  scope module: :public do
+  scope module: :customers do
     resources :products, only: [:show, :index]
   end
 
-  namespace :admin do
+  namespace :admins do
     resources :products, except: [:destroy]
     resources :product_types, except: [:new, :show, :destroy]
   end
