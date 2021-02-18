@@ -1,0 +1,15 @@
+<h2>商品詳細</h2>
+<div><%= attachment_image_tag(@product, :image,  fallback: "no_image.jpg") %></div>
+<div>
+    <div>
+        <%= @product.name %>
+    </div>
+    <div>
+        <%= @product.description %>
+    </div>
+    <div>
+        <%= converting_to_jpy((@product.price * 1.1).round) %><span>(税込)</span>
+    </div>
+    <div>
+        <span>個数選択</span><span>カートに入れる</span>
+    </div>
