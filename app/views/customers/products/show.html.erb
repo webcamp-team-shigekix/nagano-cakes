@@ -1,17 +1,19 @@
 <h2>商品詳細</h2>
-<div><%= attachment_image_tag(@product, :image,  fallback: "no_image.jpg") %></div>
-<div>
-    <%= @product.name %>
-</div>
-<div>
-    <%= @product.description %>
-</div>
-<div>
-    <%= converting_to_jpy((@product.price * 1.1).round) %><span>(税込)</span>
-</div>
+<div><%= attachment_image_tag(@product, :image, fallback: "no_image.jpg", size: "100x100" ) %></div>
 
-<%= form_with model:[:customers,@cart_products], local:true do |f| %>
+<div>
+  <%= @product.name %>
+</div>
+<div>
+  <%= @product.description %>
+</div>
+<div>
+  <%= converting_to_jpy((@product.price * 1.1).round) %><span>(税込)</span>
+</div>
+<div class="into-cart">
+  <%= form_with url: cart_products_path, model: @cart_product, local: true do |f| %>
+    <%= f.select :count, [["1", "1"], ["2", "2"], ["3", "3"], ["4", "4"], ["5", "5"], ["6", "6"], ["7", "7"], ["8", "8"], ["9", "9"], ["10", "10"]], include_blank: '個数選択' %>
     <%= f.hidden_field :product_id, value: @product.id %>
-    <%= f.select :quantity, options_for_select((1..20).to_a), include_blank: "個数選択" %>
-    <%= f.submit "カートに入れる" %>
-<% end %>
+    <%= f.submit 'カートに入れる' %>
+  <% end %>
+</div>
