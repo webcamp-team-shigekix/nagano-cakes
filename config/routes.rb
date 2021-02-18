@@ -32,7 +32,6 @@ Rails.application.routes.draw do
   namespace :admins do
     resources :products, except: [:destroy]
     resources :product_types, except: [:new, :show, :destroy]
-    resources :customers, only: [:index,:show,:edit,:update]
   end
 
 end

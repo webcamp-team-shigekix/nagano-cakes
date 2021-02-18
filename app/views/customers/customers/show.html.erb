@@ -1,32 +1,34 @@
-<div class="container">
+<div class="container mt-4">
+  <h3>マイページ</h3>
     <div class="row">
-        <h3>マイページ</h3>
         <div class="customer-info-table">
-            <h4>登録情報</h4><%= link_to "編集する", edit_customer_registration_path %>
-            <table>
+            <h4>登録情報</h4><%= link_to "編集する", edit_customer_registration_path, class:"btn btn-success mb-3" %>
+            <table class="table table-bordered">
+              <col span="1" bgcolor="#ddd" width=150>
+              <col span="1" width=250>
                 <tr>
-                    <td>氏名</td>
-                    <td><%= @customer.family_name %> <%= @customer.first_name %></td>
+                  <td>氏名</td>
+                  <td><%= @customer.family_name %> <%= @customer.first_name %></td>
                 </tr>
                 <tr>
-                    <td>カナ</td>
-                    <td><%= @customer.family_name_kana %> <%= @customer.first_name_kana %></td>
+                  <td>カナ</td>
+                  <td><%= @customer.family_name_kana %> <%= @customer.first_name_kana %></td>
                 </tr>
                 <tr>
-                    <td>郵便番号</td>
-                    <td><%= @customer.postal_code %></td>
+                  <td>郵便番号</td>
+                  <td><%= @customer.postal_code %></td>
                 </tr>
                 <tr>
-                    <td>住所</td>
-                    <td><%= @customer.address %></td>
+                  <td>住所</td>
+                  <td><%= @customer.address %></td>
                 </tr>
                 <tr>
-                    <td>電話番号</td>
-                    <td><%= @customer.phone_number %></td>
+                  <td>電話番号</td>
+                  <td><%= @customer.phone_number %></td>
                 </tr>
                 <tr>
-                    <td>メールアドレス</td>
-                    <td><%= @customer.email %></td>
+                  <td>メールアドレス</td>
+                  <td><%= @customer.email %></td>
                 </tr>
             </table>
             <h4><%= link_to '配送先一覧', receivers_path %></h4>
