@@ -3,8 +3,6 @@ class Customers::CartProductsController < ApplicationController
   def index
     @cart_product = CartProduct.new
     @cart_products = CartProduct.where(customer_id: current_customer.id)
-    # @cart_products = CartProduct.all
-    @tax = 1.08
     @total_price = 0
   end
 

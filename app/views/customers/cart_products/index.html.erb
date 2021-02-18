@@ -17,10 +17,11 @@
     <tbody>
       <% @cart_products.each do |cart_product| %>
         <tr>
-          <% @taxincluded = (cart_product.product.price*@tax).floor %>
-          <% @sum = @taxincluded*cart_product.count %>
+          <% taxincluded = (cart_product.product.price*$tax).floor %>
+          <% sum = taxincluded*cart_product.count %>
+          <% @total_price += sum %>
           <td><%= cart_product.product.name %></td>
-          <td><%= @taxincluded %></td>
+          <td><%= taxincluded %></td>
           <td>
             <%= form_with model: @cart_product, url: cart_product_path(cart_product.id), local: true, method: :patch do |f| %>
               <div class="form-group">
@@ -31,8 +32,7 @@
               </div>
             <% end %>
           </td>
-          <td><%= @sum %></td>
-            <% @total_price += @sum %>
+          <td><%= sum %></td>
           <td><%= link_to "削除", cart_product_path(cart_product.id), method: :delete %></td>
         </tr>
       <% end %>

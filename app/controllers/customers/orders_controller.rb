@@ -6,7 +6,13 @@ class Customers::OrdersController < ApplicationController
 
   def confirm
     @order = Order.new(order_params)
-    @ship_cost = 800
+    if @order.how_to_pay == 0
+      @way_to_pay = "クレジットカード"
+    else
+      @way_to_pay = "銀行振込"
+    end
+    @total_price = 0
+    @cart_products = CartProduct.where(customer_id: current_customer.id)
   end
 
   def create
@@ -24,9 +30,9 @@ class Customers::OrdersController < ApplicationController
       @ordered_product.save
     end
     @cart_products.destroy_all
-    
+
     redirect_to orders_finish_path
-    
+
   end
 
   def finish

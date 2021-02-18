@@ -28,12 +28,22 @@
           <%= f.collection_select :receiver_name, Receiver.where(customer_id: current_customer.id), :name, :name %>
       </label><br />
       <label>
-        <%= f.radio_button :select, 2 %>新しいお届け先
-
+        <%= f.radio_button :select, 2 %>新しいお届け先<br />
+          <table>
+            <tr>
+              <td>郵便番号:</td><td><%= f.text_field :postal_code %></td>
+            </tr>
+            <tr>
+              <td>住所:</td><td><%= f.text_field :address, size: 60 %></td>
+            </tr>
+            <tr>
+              <td>宛名:</td><td><%= f.text_field :receiver_name %></td>
+            </tr>
+          </table>
       </label>
     </div>
     <div class="submit">
-      <%= f.submit "確認画面へ進む", class: 'btn btn-success' %>
+      <%= f.submit "確認画面へ進む（押してもいいが未完成", class: 'btn btn-success' %>
     </div>
   <% end %>
 </div>
