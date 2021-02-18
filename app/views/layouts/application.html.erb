@@ -10,33 +10,41 @@
   </head>
 
   <body>
-    <div class="navbar bg-info">
+    <nav class="navbar bg-info">
       <div class="container">
-        <div class="row">
+        <div class="navbar-brand">
           <%= link_to root_path do %>
-            <div class="text-white navbar-brand"> Nagano_Cake </div>
+            <div class="text-white navbar-brand border py-3 px-2"> NaganoCake </div>
           <% end %>
         </div>
         <% if customer_signed_in? %>
-          <%= link_to "マイページ", customers_path %>
-          <%= link_to '商品一覧', products_path %>
-          <%= link_to "カート", customers_cart_products_path %>
-          <%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %>
+          <div class="text-white">ようこそ、<%= current_customer.family_name %>  さん  </div>
+          <div>
+            <%= link_to "マイページ", customers_path, class: "btn btn-info" %>
+            <%= link_to '商品一覧', products_path, class: "btn btn-info" %>
+            <%= link_to "カート", customers_cart_products_path, class: "btn btn-info" %>
+            <%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: "btn btn-info" %>
+          </div>
         <% elsif admin_signed_in? %>
-          <%= link_to '商品一覧', admins_products_path %>
-          <%= link_to '会員一覧', admins_customers_path %>
-          注文商品一覧
-          <%= link_to 'ジャンル一覧', admins_product_types_path %>
-          <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
+          <div>
+            <%= link_to '商品一覧', admins_products_path, class: "btn btn-info" %>
+            <%= link_to '会員一覧', admins_customers_path, class: "btn btn-info" %>
+            注文商品一覧
+            <%= link_to 'ジャンル一覧', admins_product_types_path, class: "btn btn-info" %>
+            <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "btn btn-info" %>
+          </div>
         <% else %>
-          <%= link_to 'About', about_path %>,
-          <%= link_to 'ログイン', new_customer_session_path %>,
-          <%= link_to '新規登録', new_customer_registration_path %>
-          <%= link_to '（開発用）管理者ログイン', new_admin_session_path %>
+          <div>
+            <%= link_to 'About', about_path, class: "btn btn-info" %>
+            <%= link_to '商品一覧', products_path, class: "btn btn-info" %>
+            <%= link_to '新規登録', new_customer_registration_path, class: "btn btn-info" %>
+            <%= link_to 'ログイン', new_customer_session_path, class: "btn btn-info" %>
+          </div>
         <% end %>
       </div>
-    </div>
-          <div>
+    </nav>
+    <div>
+    <%= link_to '（開発用）管理者ログイン', new_admin_session_path %>
         <!--開発用-->
         <% if customer_signed_in? %>
           [会員<%= current_customer.family_name %><%= current_customer.first_name %>としてログイン中]
@@ -45,7 +53,7 @@
         <% else %>
           [ログインしていない]
         <% end %>
-      </div>
+    </div>
     <%= yield %>
   </body>
 </html>
