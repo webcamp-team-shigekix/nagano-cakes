@@ -3,22 +3,33 @@
 <div class="pay-and-deliver">
   <%= form_with url: orders_confirm_path, model: @order, local: true do |f| %>
     <div class="how-to-pay">
+      <h4>支払い方法</h4>
       <label><%= f.radio_button :how_to_pay, 0 %>クレジットカード</label>
       <label><%= f.radio_button :how_to_pay, 1 %>銀行振込</label>
     </div>
     <div class="where-to-deliver">
-      <!--以下の全てが可能となるラジオボタンを作る-->
-        <!--①郵便番号、住所、配送先名の３つを同時に設定-->
-        <!--②選択肢の内部にプルダウン-->
-        <!--③選択肢の内部にフォーム-->
+    　<h4>お届け先</h4>
       <label>
-        <%= f.radio_button :select , 0 %>
-        ご自身の住所
-      </label>
-      <label><%= f.radio_button :select , 1 %>登録済住所から選択</label>
+        <%= f.radio_button :select, 0 %>
+          ご自身の住所
+          <div class="showed-part">
+            〒<%= current_customer.postal_code %>
+            <%= current_customer.address %>
+            <%= current_customer.family_name + current_customer.first_name %>
+          </div>
+          <%= f.hidden_field :postal_code, value: current_customer.postal_code %>
+          <%= f.hidden_field :address, value: current_customer.address %>
+          <%= f.hidden_field :receiver_name, value: current_customer.family_name + current_customer.first_name %>
+      </label><br />
       <label>
-        <%= f.radio_button :select , 2 %>新しいお届け先
-        
+        <%= f.radio_button :select, 1 %>登録済住所から選択
+          <%= f.collection_select :postal_code, Receiver.where(customer_id: current_customer.id), :postal_code, :postal_code %>
+          <%= f.collection_select :address, Receiver.where(customer_id: current_customer.id), :address, :address %>
+          <%= f.collection_select :receiver_name, Receiver.where(customer_id: current_customer.id), :name, :name %>
+      </label><br />
+      <label>
+        <%= f.radio_button :select, 2 %>新しいお届け先
+
       </label>
     </div>
     <div class="submit">
