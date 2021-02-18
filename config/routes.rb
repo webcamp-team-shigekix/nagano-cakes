@@ -23,15 +23,12 @@ Rails.application.routes.draw do
     resources :orders, only:[:index, :show]
   end
 
-
-
   get '/customers/unsubscribe' => 'customers/customers#unsubscribe'
   patch '/customers/withdraw' => 'customers/customers#withdraw'
   namespace :customers do
     resources :cart_products, only: [:index, :create, :update, :destroy]
   end
     delete "customers/cart_product/destroy_all" => "customers/cart_products#destroy_all"
-
 
   namespace :admins do
     resources :products, except: [:destroy]

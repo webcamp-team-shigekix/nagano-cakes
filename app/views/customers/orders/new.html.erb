@@ -1,1 +1,25 @@
 <h1>注文情報入力</h1>
+
+<div class="pay-and-deliver">
+  <%= form_with url: orders_confirm_path, model: @order, local: true do |f| %>
+    <div class="how-to-pay">
+      <label><%= f.radio_button :how_to_pay, 0 %>クレジットカード</label>
+      <label><%= f.radio_button :how_to_pay, 1 %>銀行振込</label>
+    </div>
+    <div class="where-to-deliver">
+      <!--以下の全てが可能となるラジオボタンを作る-->
+        <!--①郵便番号、住所、配送先名の３つを同時に設定-->
+        <!--②選択肢の内部にプルダウン-->
+        <!--③選択肢の内部にフォーム-->
+      <label>
+        <%= f.radio_button :postal_code, current_customer.postal_code, :address, current_customer.address, :receiver_name, current_customer.family_name + current_customer.first_name %>
+        ご自身の住所
+      </label>
+      <label>登録済住所から選択</label>
+      <label>新しいお届け先</label>
+    </div>
+    <div class="submit">
+      <%= f.submit "確認画面へ進む", class: 'btn btn-success' %>
+    </div>
+  <% end %>
+</div>
