@@ -14,7 +14,7 @@
   </div>
   <div class="form-group">
     <%= f.label :product_type_id, "ジャンル" %>
-    <%= f.collection_select :product_type_id, ProductType.all, :name, :name %>
+    <%= f.collection_select :product_type_id, ProductType.all, :id, :name %>
   </div>
   <div class="form-group">
     <%= f.label :price, "税抜価格" %>
