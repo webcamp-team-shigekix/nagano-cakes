@@ -17,7 +17,7 @@
       <% end %>
     </td>
     <td><%= converting_to_jpy(product.price) %></td>
-    <td><%= product.product_type_id %></td>
+    <td><%= product.product_type.name%></td>
     <td>
       <% if product.is_active == true %>
         販売中
