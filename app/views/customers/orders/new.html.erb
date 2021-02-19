@@ -10,7 +10,7 @@
     <div class="where-to-deliver">
     　<h4>お届け先</h4>
       <label>
-        <%= f.radio_button :select, 0 %>
+        <%= f.radio_button :select, 0, checked: true %>
           ご自身の住所
           <div class="showed-part">
             〒<%= current_customer.postal_code %>
@@ -31,19 +31,19 @@
         <%= f.radio_button :select, 2 %>新しいお届け先<br />
           <table>
             <tr>
-              <td>郵便番号:</td><td><%= f.text_field :postal_code %></td>
+              <td>郵便番号:</td><td><%= f.text_field :postal_code, value: current_customer.postal_code %></td>
             </tr>
             <tr>
-              <td>住所:</td><td><%= f.text_field :address, size: 60 %></td>
+              <td>住所:</td><td><%= f.text_field :address, size: 60, value: current_customer.address %></td>
             </tr>
             <tr>
-              <td>宛名:</td><td><%= f.text_field :receiver_name %></td>
+              <td>宛名:</td><td><%= f.text_field :receiver_name, value: current_customer.family_name + current_customer.first_name %></td>
             </tr>
           </table>
       </label>
     </div>
     <div class="submit">
-      <%= f.submit "確認画面へ進む（押してもいいが未完成", class: 'btn btn-success' %>
+      <%= f.submit "確認画面へ進む（どれを押しても新しいお届け先になる）", class: 'btn btn-success' %>
     </div>
   <% end %>
 </div>
