@@ -1,9 +1,9 @@
 <h2>商品一覧</h2>
-<%= @products.each do |product| %>
+<% @products.each do |product| %>
   <% unless product.is_active == false %>
     <div>
       <%= link_to product_path(product) do %>
-        <%= attachment_image_tag(product, :image,  fallback: "no_image.jpg") %>
+        <%= attachment_image_tag(product, :image,  fallback: "no_image.jpg", size:"100x100") %>
       <% end %>
     </div>
     <div>

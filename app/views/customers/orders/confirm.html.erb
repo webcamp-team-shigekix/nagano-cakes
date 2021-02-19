@@ -20,13 +20,14 @@
             <td><%= sum %></td>
           </tr>
         <% end %>
+        <% total_pay = @total_price + $ship %>
       </table>
     </div>
     <div class="total-bill">
       <table>
         <tr>
           <td>送料</td>
-          <td><%= @ship_cost %></td>
+          <td><%= $ship %></td>
         </tr>
         <tr>
           <td>商品合計</td>
@@ -34,14 +35,14 @@
         </tr>
         <tr>
           <td>請求金額</td>
-          <td><%= @total_price + $ship %></td>
+          <td><%= total_pay %></td>
         </tr>
       </table>
     </div>
   </div>
   <div class="pay-and-deliver">
     支払い方法：<%= @way_to_pay %>
-    お届け先：<%= @order.postal_code %><%= @order.address %><%= @order.receiver_name %>
+    お届け先：<%= @order.postal_code %>/<%= @order.address %>/<%= @order.receiver_name %>
   </div>
 </div>
 <div class="confirm-button">
@@ -50,7 +51,8 @@
     <%= f.hidden_field :postal_code %>
     <%= f.hidden_field :address %>
     <%= f.hidden_field :receiver_name %>
-    <%= f.submit "注文を確定する(まだ押さないで" %>
+    <%= f.hidden_field :total_payment, :value => total_pay %>
+    <%= f.submit "注文を確定する" %>
   <% end %>
 
 </div>
