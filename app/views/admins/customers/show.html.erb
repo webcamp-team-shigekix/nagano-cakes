@@ -43,7 +43,7 @@
                 </tr>
             </table>
             <%= link_to "編集する", edit_admins_customer_path(@customer.id) %>
-            <h4>注文履歴</h4>
+            <%= link_to "#{@customer.family_name}さんの注文履歴", admins_orders_path(check: @customer.id) %>
         </div>
     </div>
 </div>
