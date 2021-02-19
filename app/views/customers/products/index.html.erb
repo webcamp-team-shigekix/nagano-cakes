@@ -1,16 +1,22 @@
-<h2>商品一覧</h2>
-<% @products.each do |product| %>
-  <% unless product.is_active == false %>
-    <div>
-      <%= link_to product_path(product) do %>
-        <%= attachment_image_tag(product, :image,  fallback: "no_image.jpg", size:"100x100") %>
+<div class="container">
+  <div class="row my-5">
+    <h3 class="text-left">商品一覧</h3>
+  </div>
+  <div class="row my-3">
+    <% @products.each do |product| %>
+      <% unless product.is_active == false %>
+        <div class="col-lg-3">
+          <%= link_to product_path(product.id), class: "text-decoration-none" do %>
+            <div class="card">
+              <%= attachment_image_tag(product, :image, :fill, 200, 200, fallback: "no_image.jpg") %>
+                <div class="card-body text-dark">
+                  <div class="card-text"><%= product.name %></div>
+                  <div class="card-text">¥ <%= converting_to_jpy(product.price) %></div>
+                </div>
+              </div>
+          　<% end %>
+          </div>
+        <% end %>
       <% end %>
     </div>
-    <div>
-      <p>商品名</p><%= product.name %>
-    </div>
-    <div>
-      <p>￥<%= converting_to_jpy(product.price) %>
-    </div>
-  <% end %>
-<% end %>
+</div>
