@@ -34,7 +34,7 @@
     <div><% @product_types.each do |product_type| %>
       <tr>
         <td>
-          <%= link_to product_type.name, products_path('search[value]': product_type.id, 'search[how]': "match") %>
+          <%= link_to product_type.name, customers_products_search_search_path('search[value]': product_type.id, 'search[how]': "match") %>
         </td>
       </tr>
     <% end %></div>

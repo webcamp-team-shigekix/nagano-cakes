@@ -4,7 +4,7 @@ class Customers::ProductsSearchController < ApplicationController
     @value = params["search"]["value"]
     @how = params["search"]["how"]
     @datas = search_for(@how, @value)
-    @product_type = ProductType.find_by(params[:@value])
+    @product_type = ProductType.find_by(id: params["search"]["value"])
   end
 
   private
