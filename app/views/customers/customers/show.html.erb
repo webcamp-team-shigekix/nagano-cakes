@@ -1,9 +1,14 @@
 <div class="container mt-4">
   <h3>マイページ</h3>
     <div class="row">
-        <div class="customer-info-table">
-            <h4>登録情報</h4><%= link_to "編集する", edit_customer_registration_path, class:"btn btn-success mb-3" %>
-            <table class="table table-bordered">
+        <div class="customer-info-table mt-3">
+          <table>
+            <tr>
+              <td width="150"><h4>登録情報</h4></td>
+              <td><%= link_to "編集する", edit_customer_registration_path, class:"btn btn-success" %></td>
+            </tr>
+          </table>
+            <table class="table table-bordered mt-4">
               <col span="1" bgcolor="#ddd" width=150>
               <col span="1" width=250>
                 <tr>
@@ -31,8 +36,16 @@
                   <td><%= @customer.email %></td>
                 </tr>
             </table>
-            <h4><%= link_to '配送先一覧', receivers_path %></h4>
-            <h4><%= link_to '注文履歴', orders_path %></h4>
+            <table>
+              <tr class="receiver">
+                  <td width="150"><h4>配送先</h4></td>
+                  <td><%= link_to '一覧を見る', receivers_path, class:"btn btn-primary mb-2" %></td>
+              </tr>
+              <tr class="order">
+                  <td width="150"><h4>注文履歴</h4></td>
+                  <td><%= link_to '注文履歴', orders_path, class:"btn btn-primary mb-2" %></td>
+              </tr>
+            </table>
         </div>
     </div>
 </div>
