@@ -31,13 +31,9 @@
                   <td><%= @customer.email %></td>
                 </tr>
             </table>
-            <div class="receiver mt-3">
-              <h4>配送先</h4>
-              <%= link_to '一覧を見る', receivers_path, class:"btn btn-primary" %>
-            </div>
-            <div class="order mt-3">
-              <h4>注文履歴</h4>
-            </div>
+            <h4><%= link_to '配送先一覧', receivers_path %></h4>
+            <h4><%= link_to '注文履歴', orders_path %></h4>
+
         </div>
     </div>
   </div>

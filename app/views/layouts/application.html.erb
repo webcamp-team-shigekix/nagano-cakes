@@ -22,14 +22,14 @@
           <div>
             <%= link_to "マイページ", customers_path, class: "btn btn-info" %>
             <%= link_to '商品一覧', products_path, class: "btn btn-info" %>
-            <%= link_to "カート", customers_cart_products_path, class: "btn btn-info" %>
+            <%= link_to "カート", cart_products_path, class: "btn btn-info" %>
             <%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: "btn btn-info" %>
           </div>
         <% elsif admin_signed_in? %>
           <div>
             <%= link_to '商品一覧', admins_products_path, class: "btn btn-info" %>
             <%= link_to '会員一覧', admins_customers_path, class: "btn btn-info" %>
-            注文商品一覧
+            <%= link_to '注文履歴一覧', admins_orders_path, class: "btn btn-info" %>
             <%= link_to 'ジャンル一覧', admins_product_types_path, class: "btn btn-info" %>
             <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "btn btn-info" %>
           </div>
