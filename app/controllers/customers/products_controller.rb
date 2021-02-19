@@ -6,7 +6,7 @@ class Customers::ProductsController < ApplicationController
   end
 
   def index
-    @products = Product.all
+    @product = Product.all
   end
 
 end
