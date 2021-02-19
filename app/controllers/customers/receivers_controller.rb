@@ -1,6 +1,7 @@
 class Customers::ReceiversController < ApplicationController
   def index
     @receivers = Receiver.where(customer_id: current_customer.id)
+    @receiver = Receiver.new
   end
 
   def edit
@@ -8,9 +9,12 @@ class Customers::ReceiversController < ApplicationController
   end
 
   def create
-    @receiver = Receiver.new(customer_id: current_customer.id, name: "未登録", postal_code: "未登録", address: "未登録")
+    @receivers = Receiver.where(customer_id: current_customer.id)
+    @receiver = Receiver.new(receiver_params)
     if @receiver.save
       redirect_back(fallback_location: root_path)
+    else
+      render :index
     end
   end
 
@@ -33,7 +37,7 @@ class Customers::ReceiversController < ApplicationController
   private
 
   def receiver_params
-    params.require(:receiver).permit(:name, :postal_code, :address)
+    params.require(:receiver).permit(:customer_id, :name, :postal_code, :address)
   end
 
 end

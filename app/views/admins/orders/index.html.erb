@@ -1,4 +1,9 @@
 <h1>注文履歴一覧</h1>
+<div class="notice text-danger">
+  <% if @notice %>
+    <%= @notice %>
+  <% end %>
+</div>
 <div class="order-list">
   <table>
     <thead>
