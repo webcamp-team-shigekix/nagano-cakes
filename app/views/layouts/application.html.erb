@@ -29,7 +29,7 @@
           <div>
             <%= link_to '商品一覧', admins_products_path, class: "btn btn-info" %>
             <%= link_to '会員一覧', admins_customers_path, class: "btn btn-info" %>
-            <%= link_to '注文履歴一覧', admins_orders_path, class: "btn btn-info" %>
+            <%= link_to '注文履歴一覧', admins_orders_path(check: 0), class: "btn btn-info" %>
             <%= link_to 'ジャンル一覧', admins_product_types_path, class: "btn btn-info" %>
             <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "btn btn-info" %>
           </div>
@@ -43,16 +43,9 @@
         <% end %>
       </div>
     </nav>
-    <div>
-    <%= link_to '（開発用）管理者ログイン', new_admin_session_path %>
-        <!--開発用-->
-        <% if customer_signed_in? %>
-          [会員<%= current_customer.family_name %><%= current_customer.first_name %>としてログイン中]
-        <% elsif admin_signed_in? %>
-          [管理者としてログイン中]
-        <% else %>
-          [ログインしていない]
-        <% end %>
+    <div class="delete-after-development">
+      <%= link_to '（開発用）管理者ログイン', new_admin_session_path %>
+    </div>
     </div>
     <%= yield %>
     <div class="footer bg-info">
