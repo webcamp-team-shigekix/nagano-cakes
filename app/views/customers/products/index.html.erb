@@ -1,5 +1,5 @@
 <h2>商品一覧</h2>
-<%= @products.each do |product| %>
+<% @products.each do |product| %>
   <% unless product.is_active == false %>
     <div>
       <%= link_to product_path(product) do %>

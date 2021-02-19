@@ -36,6 +36,8 @@ Rails.application.routes.draw do
     resources :products, except: [:destroy]
     resources :product_types, except: [:new, :show, :destroy]
     resources :customers, except: [:new,:create,:destroy]
+    resources :orders, only: [:index,:show,:update]
+    resources :ordered_products, only: [:update]
   end
 
 end

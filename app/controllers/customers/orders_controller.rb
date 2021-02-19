@@ -17,7 +17,8 @@ class Customers::OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-    @order.shipping_cost = 800
+    @order.customer_id = current_customer.id
+    @order.shipping_cost = $ship
     @order.save
     # カート内商品の種類の数だけ@ordered_productを作ってカラムに値入れて全部save、その後カート内全削除
     @cart_products = CartProduct.where(customer_id: current_customer.id)
@@ -26,7 +27,7 @@ class Customers::OrdersController < ApplicationController
       @ordered_product.order_id = @order.id
       @ordered_product.product_id = cart_p.product_id
       @ordered_product.count = cart_p.count
-      @ordered_product.tax_included_price = cart_p.product.price*1.1
+      @ordered_product.tax_included_price = cart_p.product.price*$tax
       @ordered_product.save
     end
     @cart_products.destroy_all
@@ -39,15 +40,19 @@ class Customers::OrdersController < ApplicationController
   end
 
   def index
+    @orders = Order.where(customer_id: current_customer.id)
+
   end
 
   def show
+    @order = Order.find(params[:id])
+    @ordered_products = OrderedProduct.where(order_id: @order.id)
   end
 
   private
 
   def order_params
-    params.require(:order).permit(:how_to_pay, :postal_code, :address, :receiver_name)
+    params.require(:order).permit(:how_to_pay, :postal_code, :address, :receiver_name, :total_payment)
   end
 
 end
