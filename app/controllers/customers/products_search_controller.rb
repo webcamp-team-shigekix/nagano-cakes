@@ -1,15 +1,10 @@
-class Customers::ProductsController < ApplicationController
+class Customers::ProductsSearchController < ApplicationController
 
-  def show
-    @product = Product.find(params[:id])
-    @cart_product = CartProduct.new
-  end
-
-  def index
-    @products = Product.all
+  def search
     @value = params["search"]["value"]
     @how = params["search"]["how"]
     @datas = search_for(@how, @value)
+    @product_type = ProductType.find_by(params[:@value])
   end
 
   private
@@ -24,5 +19,5 @@ class Customers::ProductsController < ApplicationController
       match(value)
     end
   end
-  
+
 end

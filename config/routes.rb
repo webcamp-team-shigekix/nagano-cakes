@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :customers do
+    get 'products_search/search'
+  end
   devise_for :admins, controllers: {
     sessions: 'admins/sessions',
     passwords: 'admins/passwords',

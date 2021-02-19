@@ -1,0 +1,11 @@
+<%= @product_type.name %>一覧
+<% @datas.each do |data| %>
+  <div>
+    <%= link_to product_path(data.id) do %>
+      <%= attachment_image_tag(data, :image, :fill, 300, 225, fallback: "no_image.jpg", size: '300x225') %><br>
+    <% end %>
+    <p>商品名 : <%= data.name %></p><br>
+
+    <p>￥<%= converting_to_jpy(data.price) %></p>
+  </div>
+<% end %>
