@@ -7,17 +7,17 @@
     <table>
       <thead>
         <tr>
-          <th>配送先</th>
           <th>郵便番号</th>
           <th>住所</th>
+          <th>宛名</th>
         </tr>
       </thead>
       <tbody>
         <% @receivers.each do |receiver| %>
           <tr>
-            <td><%= receiver.name %></td>
             <td><%= receiver.postal_code %></td>
             <td><%= receiver.address %></td>
+            <td><%= receiver.name %></td>
             <td><%= link_to '編集', edit_receiver_path(receiver.id) %></td>
             <td><%= link_to '削除', receiver_path(receiver.id), method: :delete %></td>
           </tr>
@@ -28,5 +28,22 @@
 </div>
 
 <div class="new-receiver">
-  <%= link_to "新規配送先を追加", receivers_path, method: :post %>
+  <%= form_with model: @receiver, local:true do |f| %>
+    <table>
+      <tr>
+        <td>郵便番号</td>
+        <td><%= f.text_field :postal_code %></td>
+      </tr>
+      <tr>
+        <td>住所</td>
+        <td><%= f.text_field :address, size: 60 %></td>
+      </tr>
+      <tr>
+        <td>宛名</td>
+        <td><%= f.text_field :name %></td>
+      </tr>
+    </table>
+    <%= f.hidden_field :customer_id, value: current_customer.id %>
+    <%= f.submit '新規配送先を追加' %>
+  <% end %>
 </div>

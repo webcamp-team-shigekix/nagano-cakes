@@ -4,7 +4,7 @@
   <%= form_with url: orders_confirm_path, model: @order, local: true do |f| %>
     <div class="how-to-pay">
       <h4>支払い方法</h4>
-      <label><%= f.radio_button :how_to_pay, 0 %>クレジットカード</label>
+      <label><%= f.radio_button :how_to_pay, 0 %>クレジットカード</label><br/>
       <label><%= f.radio_button :how_to_pay, 1 %>銀行振込</label>
     </div>
     <div class="where-to-deliver">

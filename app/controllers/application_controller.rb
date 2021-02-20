@@ -2,6 +2,13 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_tax_and_ship
 
+  def after_sign_in_path_for(resource)
+    if current_admin
+      admins_orders_path
+    else
+      root_path
+    end
+  end
 
   protected
 
