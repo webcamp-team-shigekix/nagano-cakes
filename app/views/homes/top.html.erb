@@ -29,14 +29,17 @@
                 </div>
         <% end %>
     </div>
-    <div><% @product_types.each do |product_type| %>
-      <tr>
-        <td>
-          <%= link_to product_type.name, customers_products_search_search_path('search[value]': product_type.id, 'search[how]': "match") %>
-        </td>
-      </tr>
-    <% end %></div>
-    <div class="col-lg-12 my-3">
-        <p class="text-right"><%= link_to "全ての商品を見る>", products_path, class: "btn btn-outline-secondary" %></p>
+    <div class="col-lg-12 mt-5">
+        <h3 class="text-left">ジャンル検索</h3>
+    </div>
+    <div class="row my-3">
+        <div class="col-lg-9 d-flex flex-wrap">
+            <% @product_types.each do |product_type| %>
+                <div class="btn-group w-25"><%= link_to product_type.name, customers_products_search_search_path('search[value]': product_type.id, 'search[how]': "match"), class: "btn btn-outline-secondary rounded-0" %></div>
+            <% end %>
+        </div>
+        <div class="col-lg-3 d-flex justify-content-end">
+           <p class="text-right"><%= link_to "全ての商品を見る>", products_path, class: "btn btn-outline-secondary" %></p>
+        </div>
     </div>
 </div>
