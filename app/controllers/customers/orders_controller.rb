@@ -1,7 +1,12 @@
 class Customers::OrdersController < ApplicationController
 
   def new
-    @order = Order.new
+    if CartProduct.where(customer_id: current_customer.id).count == 0
+      flash[:notice] = "カートは空です"
+      redirect_back(fallback_location: root_path)
+    else
+      @order = Order.new
+    end
   end
 
   def confirm

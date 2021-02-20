@@ -21,6 +21,7 @@
     <div class="row d-flex justify-content-center my-3">
         <% @products.each do |product| %>
             <div class="col-lg-3">
+                <%= link_to product_path(product.id) do %>
                 <div class="card">
                     <%= attachment_image_tag(product, :image, :fill, 200, 200, fallback: "no_image.jpg") %>
                     <div class="card-body">
@@ -28,10 +29,11 @@
                         <div class="card-text">¥ <%= product.price %></div>
                     </div>
                 </div>
+                <% end %>
             </div>
         <% end %>
     </div>
     <div class="col-lg-12 my-3">
-            <p class="text-right"><%= link_to "商品一覧へ>", products_path %></p>
+            <p class="text-right"><%= link_to "全ての商品を見る >", products_path %></p>
     </div>
 </div>
