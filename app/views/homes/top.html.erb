@@ -29,6 +29,13 @@
                 </div>
         <% end %>
     </div>
+    <div><% @product_types.each do |product_type| %>
+      <tr>
+        <td>
+          <%= link_to product_type.name, customers_products_search_search_path('search[value]': product_type.id, 'search[how]': "match") %>
+        </td>
+      </tr>
+    <% end %></div>
     <div class="col-lg-12 my-3">
         <p class="text-right"><%= link_to "商品一覧へ>", products_path, class: "btn btn-outline-secondary" %></p>
     </div>
