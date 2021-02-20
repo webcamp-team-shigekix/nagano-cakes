@@ -1,82 +1,93 @@
-<h1>注文履歴詳細</h1>
-<div class="tables">
-  <div class="order-info">
-    <table>
-      <tr>
-        <td>注文日</td>
-        <td><%= @order.created_at.strftime("%Y/%m/%d") %></td>
-      </tr>
-      <tr>
-        <td>配送先</td>
-        <td>
-          <%= @order.postal_code %><br><%= @order.address %><br><%= @order.receiver_name %>
-        </td>
-      <tr>
-        <td>支払方法</td>
-        <td>
-          <% case @order.how_to_pay %>
-          <% when 0 %>
-            クレジットカード
-          <% when 1 %>
-            銀行振込
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <td>ステータス</td>
-        <td>
-          <% case @order.order_status %>
-            <% when 0 %>
-              入金待ち
-            <% when 1 %>
-              入金確認
-            <% when 2 %>
-              製作中
-            <% when 3 %>
-              発送準備中
-            <% when 4 %>
-              発送済み
-            <% end %>
-        </td>
-      </tr>
-    </table>
+<div class="container mt-4">
+  <h1>注文履歴詳細</h1>
+  <div class="row mt-4">
+    <div class="col-md-5">
+        <div class="order-info">
+          <table class="table-bordered">
+            <p>注文情報</p>
+            <tr>
+              <td width="150">注文日</td>
+              <td width="300"><%= @order.created_at.strftime("%Y/%m/%d") %></td>
+            </tr>
+            <tr>
+              <td>配送先</td>
+              <td>
+                <%= @order.postal_code %><br><%= @order.address %><br><%= @order.receiver_name %>
+              </td>
+            <tr>
+              <td>支払方法</td>
+              <td>
+                <% case @order.how_to_pay %>
+                <% when 0 %>
+                  クレジットカード
+                <% when 1 %>
+                  銀行振込
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td>ステータス</td>
+              <td>
+                <% case @order.order_status %>
+                  <% when 0 %>
+                    入金待ち
+                  <% when 1 %>
+                    入金確認
+                  <% when 2 %>
+                    製作中
+                  <% when 3 %>
+                    発送準備中
+                  <% when 4 %>
+                    発送済み
+                  <% end %>
+              </td>
+            </tr>
+          </table>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="payment-info">
+        <table class="table-bordered">
+          <p>請求情報</p>
+          <tr>
+            <td width="150">商品合計</td>
+            <td width="150"><%= @order.total_payment - $ship %></td>
+          </tr>
+          <tr>
+            <td>配送料</td>
+            <td><%= $ship %></td>
+          </tr>
+          <tr>
+            <td>ご請求額</td>
+            <td><%= @order.total_payment %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
   </div>
-  <div class="payment-info">
-    <table>
-      <tr>
-        <td>商品合計</td>
-        <td><%= @order.total_payment - $ship %></td>
-      </tr>
-      <tr>
-        <td>配送料</td>
-        <td><%= $ship %></td>
-      </tr>
-      <tr>
-        <td>ご請求額</td>
-        <td><%= @order.total_payment %></td>
-      </tr>
-    </table>
-  </div>
-  <div class="products">
-    <table>
-      <thead>
-        <tr>
-          <th>商品</th>
-          <th>単価（税込）</th>
-          <th>個数</th>
-          <th>小計</th>
-        </tr>
-      </thead>
-    　<tbody>
-    　   <% @ordered_products.each do |prod| %>
-    　     <tr>
-    　       <td><%= prod.product.name %></td>
-    　       <td><%= (prod.product.price*$tax).floor %></td>
-    　       <td><%= prod.count %></td>
-    　     　<td><%= (prod.product.price*$tax).floor*prod.count %></td>
-    　     </tr>
-    　   <% end %>
-    　</tbody>
-    </table>
-  </div>
+    <div class="row mt-3 mb-5">
+      <table class="table-bordered">
+        <div class="col-md-5">
+          <p>注文内容</p>
+          <thead>
+            <tr>
+              <th width="300">商品</th>
+              <th width="200">単価（税込）</th>
+              <th width="100">個数</th>
+              <th width="100">小計</th>
+            </tr>
+          </thead>
+        　<tbody>
+        　   <% @ordered_products.each do |prod| %>
+        　     <tr>
+        　       <td><%= prod.product.name %></td>
+        　       <td><%= (prod.product.price*$tax).floor %></td>
+        　       <td><%= prod.count %></td>
+        　     　<td><%= (prod.product.price*$tax).floor*prod.count %></td>
+        　     </tr>
+        　   <% end %>
+        　</tbody>
+        </table>
+      </div>
+    </div>
 </div>

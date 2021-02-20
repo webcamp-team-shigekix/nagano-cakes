@@ -16,8 +16,10 @@ class Admins::ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      redirect_to admins_product_path(@product), notice: "You have created book successfully."
+      flash[:notice] = "商品を登録しました"
+      redirect_to admins_product_path(@product)
     else
+      flash[:notice] = "必要な項目が未入力です"
       render :new
     end
   end
@@ -29,8 +31,10 @@ class Admins::ProductsController < ApplicationController
   def update
     @product = Product.find(params[:id])
     if @product.update(product_params)
-      redirect_to admins_product_path(@product), notice: "You have updated product successfully"
+      flash[:notice] = "商品情報を変更しました"
+      redirect_to admins_product_path(@product)
     else
+      flash[:notice] = "必要な項目が未入力です"
       render :edit
     end
   end

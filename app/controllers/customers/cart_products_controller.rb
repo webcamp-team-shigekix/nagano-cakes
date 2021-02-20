@@ -31,6 +31,7 @@ class Customers::CartProductsController < ApplicationController
   def destroy_all
     @cart_products = CartProduct.where(customer_id: current_customer.id)
     @cart_products.destroy_all
+    flash[:notice] = "カートを空にしました"
     redirect_to cart_products_path
   end
 

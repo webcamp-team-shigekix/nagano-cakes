@@ -46,6 +46,11 @@
     <div class="delete-after-development">
       <%= link_to '（開発用）管理者ログイン', new_admin_session_path %>
     </div>
+    <div class="notice text-success">
+      <% if flash[:notice] %>
+        <%= flash[:notice] %>
+      <% end %>
+    </div>
     <%= yield %>
     <div class="footer bg-info col-lg-12">
       <p class="text-center text-white p-4">NaganoCake</p>
