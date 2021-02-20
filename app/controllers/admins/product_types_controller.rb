@@ -8,7 +8,8 @@ class Admins::ProductTypesController < ApplicationController
   def create
     @product_type = ProductType.new(product_type_params)
     if @product_type.save
-      redirect_to admins_product_types_path, notice: "You have created book successfully."
+      flash[:notice] = "ジャンルを追加しました"
+      redirect_to admins_product_types_path
     end
   end
 
@@ -19,7 +20,8 @@ class Admins::ProductTypesController < ApplicationController
   def update
     @product_type = ProductType.find(params[:id])
     if @product_type.update(product_type_params)
-      redirect_to admins_product_types_path, notice: "You have updated book successfully."
+      flash[:notice] = "ジャンル名を変更しました"
+      redirect_to admins_product_types_path
     end
   end
 

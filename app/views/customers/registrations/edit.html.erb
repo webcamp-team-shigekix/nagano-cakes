@@ -7,38 +7,38 @@
         <div class="col-md-2"><%= f.text_field :family_name, autofocus: true, autocomplete: "family_name" %></div>
         <div class="col-md-2"><%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %></div>
       </div>
-      
+
       <div class="row">
         <div class="col-md-2"><%= f.label :フリガナ %></div>
         <div class="col-md-2"><%= f.text_field :family_name_kana, autofocus: true, autocomplete: "family_name_kana" %></div>
         <div class="col-md-2"><%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana" %></div>
       </div>
-      
+
       <div class="row">
         <div class="col-md-2"><%= f.label :郵便番号 %></div>
         <div class="col-md-2"><%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %></div>
         <div class="col-md-2"></div>
       </div>
-      
+
       <div class="row">
         <div class="col-md-2"><%= f.label :住所%></div>
         <div class="col-md-2"><%= f.text_field :address, size: 44, autofocus: true, autocomplete: "address" %></div>
       </div>
-      
+
       <div class="row">
         <div class="col-md-2"><%= f.label :電話番号%></div>
         <div class="col-md-2"><%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number" %></div>
         <div class="col-md-2"></div>
       </div>
-      
+
       <div class="row">
         <div class="col-md-2"><%= f.label :メールアドレス %></div>
         <div class="col-md-2"><%= f.email_field :email, autofocus: true, autocomplete: "email" %></div>
         <div class="col-md-2"></div>
       </div>
-      
+
       <div class="row">
-        <div class="col-md-2"><%= f.label :新しいパスワード%></div>
+        <div class="col-md-2"><%= f.label :新しいパスワード（変更しない場合は何も入力しないでください）%></div>
         <div class="col-md-2"><%= f.password_field :password, autocomplete: "new-password" %></div>
         <div class="col-md-2">
           <% if @minimum_password_length %>
@@ -46,7 +46,7 @@
           <% end %>
           </div>
       </div>
-      
+
       <div class="row">
         <div class="col-md-2">パスワード（確認）</div>
         <div class="col-md-2"><%= f.password_field :password_confirmation, autocomplete: "new-password" %></div>
@@ -58,10 +58,10 @@
       </div>
 
       <div class="field row mt-1">
-        <div class="col-md-2"><%= f.label :現在のパスワードを入力してください %></div>
+        <div class="col-md-2"><%= f.label :現在のパスワードを入力してください（必須） %></div>
         <div class="col-md-2"><%= f.password_field :current_password, autocomplete: "current-password" %></div>
       </div>
- 
+
       </table>
       <div class="actions mt-3">
         <%= f.submit "編集内容を保存する", class:"btn btn-success mb-3" %>
