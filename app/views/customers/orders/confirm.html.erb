@@ -1,50 +1,52 @@
-<h1>注文情報確認</h1>
-<div class="info-to-confirm">
-  <div class="tables">
-    <div class="each-product">
-      <table>
-        <tr>
-          <th>商品名</th>
-          <th>単価（税込）</th>
-          <th>数量</th>
-          <th>小計</th>
-        </tr>
-        <% @cart_products.each do |c_product| %>
-          <% taxincluded = (c_product.product.price*$tax).floor %>
-          <% sum = taxincluded*c_product.count %>
-          <% @total_price += sum %>
+<div class="container">
+  <div class="row mt-3">
+  <h1>注文情報確認</h1>
+  <div class="info-to-confirm">
+    <div class="tables">
+      <div class="each-product">
+        <table>
           <tr>
-            <td><%= attachment_image_tag(c_product.product, :image, fallback: "no_image.jpg", size: "50x50" ) %><%= c_product.product.name %></td>
-            <td><%= taxincluded %></td>
-            <td><%= c_product.count %></td>
-            <td><%= sum %></td>
+            <th>商品名</th>
+            <th>単価（税込）</th>
+            <th>数量</th>
+            <th>小計</th>
           </tr>
-        <% end %>
-        <% total_pay = @total_price + $ship %>
-      </table>
+          <% @cart_products.each do |c_product| %>
+            <% taxincluded = (c_product.product.price*$tax).floor %>
+            <% sum = taxincluded*c_product.count %>
+            <% @total_price += sum %>
+            <tr>
+              <td><%= attachment_image_tag(c_product.product, :image, fallback: "no_image.jpg", size: "50x50" ) %><%= c_product.product.name %></td>
+              <td><%= taxincluded %></td>
+              <td><%= c_product.count %></td>
+              <td><%= sum %></td>
+            </tr>
+          <% end %>
+          <% total_pay = @total_price + $ship %>
+        </table>
+      </div>
+      <div class="total-bill">
+        <table>
+          <tr>
+            <td>送料</td>
+            <td><%= $ship %></td>
+          </tr>
+          <tr>
+            <td>商品合計</td>
+            <td><%= @total_price %></td>
+          </tr>
+          <tr>
+            <td>請求金額</td>
+            <td><%= total_pay %></td>
+          </tr>
+        </table>
+      </div>
     </div>
-    <div class="total-bill">
-      <table>
-        <tr>
-          <td>送料</td>
-          <td><%= $ship %></td>
-        </tr>
-        <tr>
-          <td>商品合計</td>
-          <td><%= @total_price %></td>
-        </tr>
-        <tr>
-          <td>請求金額</td>
-          <td><%= total_pay %></td>
-        </tr>
-      </table>
+    <div class="pay-and-deliver">
+      支払い方法：<%= @way_to_pay %>
+      お届け先：<%= @p_code %>/<%= @address %>/<%= @name %>
     </div>
   </div>
-  <div class="pay-and-deliver">
-    支払い方法：<%= @way_to_pay %>
-    お届け先：<%= @p_code %>/<%= @address %>/<%= @name %>
-  </div>
-</div>
 <div class="confirm-button">
   <%= form_with model: @order, local: true do |f| %>
     <%= f.hidden_field :how_to_pay, value: params[:way_to_pay] %>
@@ -54,5 +56,4 @@
     <%= f.hidden_field :total_payment, value: total_pay %>
     <%= f.submit "注文を確定する" %>
   <% end %>
-
 </div>
