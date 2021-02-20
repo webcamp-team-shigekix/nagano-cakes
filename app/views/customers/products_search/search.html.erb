@@ -1,5 +1,5 @@
 <h2><%= @product_type.name %>一覧</h2>
-全<%= Product.where(product_type_id: @value).count %>件
+全<%= Product.where(product_type_id: @value).where(is_active: true).count %>件
 
 <% @datas.each do |data| %>
   <% unless data.is_active == false %>
