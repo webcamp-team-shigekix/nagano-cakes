@@ -19,6 +19,7 @@ class Customers::CartProductsController < ApplicationController
   def update
     @cart_product = CartProduct.find(params[:id])
     @cart_product.update(cart_product_params)
+    flash[:notice] = "数量を変更しました"
     redirect_to cart_products_path
   end
 

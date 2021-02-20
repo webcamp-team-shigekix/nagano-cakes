@@ -3,7 +3,7 @@ class Customers::ProductsSearchController < ApplicationController
   def search
     @value = params["search"]["value"]
     @how = params["search"]["how"]
-    @datas = search_for(@how, @value)
+    @datas = search_for(@how, @value).where(is_active: true).page(params[:page]).per(8)
     @product_type = ProductType.find_by(id: params["search"]["value"])
   end
 
