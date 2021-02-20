@@ -1,31 +1,45 @@
-<h2>商品一覧</h2>
-<%= link_to '商品登録', new_admins_product_path %>
-<table>
-  <tr>
-    <th>商品ID</th>
-    <th>商品名</th>
-    <th>税抜価格</th>
-    <th>ジャンル</th>
-    <th>ステータス</th>
-  </tr>
-  <% @products.each do |product| %>
-  <tr>
-    <td><%= product.id %></td>
-    <td>
-      <%= link_to admins_product_path(product) do %>
-        <%= product.name %>
-      <% end %>
-    </td>
-    <td><%= converting_to_jpy(product.price) %></td>
-    <td><%= product.product_type.name %></td>
-    <td>
-      <% if product.is_active == true %>
-        販売中
-      <% else %>
-        販売停止中
-      <% end %>
-    </td>
-  </tr>
-  <% end %>
-</table>
-<%= paginate @products %>
+<div class="container my-5">
+  <div class="row">
+    <div class="col-lg-5 offset-lg-1">
+      <h4>商品一覧</h4>
+    </div>
+    <div class="col-lg-5 text-right">
+      <%= link_to "　+　", new_admins_product_path, class: "btn btn-light btn-lg border p-0" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-10 offset-1">
+      <table class="table table-hover border-bottom">
+        <thead>
+          <tr class="table-secondary">
+            <th>商品ID</th>
+            <th>商品名</th>
+            <th>税抜価格</th>
+            <th>ジャンル</th>
+            <th>ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @products.each do |product| %>
+            <tr>
+              <td><%= product.id %></td>
+              <td><%= link_to "#{product.name}",admins_product_path(product) %></td>
+              <td><%= converting_to_jpy(product.price) %></td>
+              <td><%= product.product_type.name %></td>
+              <td>
+                <% if product.is_active %>
+                  <span class="text-success">販売中</span>
+                <% else %>
+                  <span class="text-secondary">販売停止中</span>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center">
+　　<%= paginate @products %>
+  </div>
+</div>
