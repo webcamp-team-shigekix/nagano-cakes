@@ -1,7 +1,7 @@
 <h1>配送先編集</h1>
 
 <div class="update-receiver">
-  <%= form_with model:@receiver<td><%= f.text_field :postal_code %></td>e do |f| %>
+  <%= form_with model:@receiver do |f| %>
     <h4>配送先</h4>
     <%= f.text_field :name, autofocus: true %>
     <h4>郵便番号</h4>

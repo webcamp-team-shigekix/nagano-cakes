@@ -27,3 +27,14 @@
     </div>
   </div>
 </div>
+<% if current_customer %>
+  <div class="into-cart">
+    <%= form_with url: cart_products_path, model: @cart_product, local: true do |f| %>
+      <%= f.select :count, [["1", "1"], ["2", "2"], ["3", "3"], ["4", "4"], ["5", "5"], ["6", "6"], ["7", "7"], ["8", "8"], ["9", "9"], ["10", "10"]], include_blank: '個数選択' %>
+      <%= f.hidden_field :product_id, value: @product.id %>
+      <%= f.submit 'カートに入れる' %>
+    <% end %>
+  </div>
+<% else %>
+  <p class="text-warning">購入するには、ログインが必要です。</p>
+<% end %>
