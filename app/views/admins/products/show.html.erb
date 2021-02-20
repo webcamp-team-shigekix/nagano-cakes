@@ -20,7 +20,7 @@
         </tr>
         <tr>
           <td>税込価格（税抜価格）</td>
-          <td><%= converting_to_jpy((@product.price * @tax).round) %> (<%= converting_to_jpy((@product.price).round) %>)<span class="small"> 円</span></td>
+          <td><%= converting_to_jpy((@product.price * $tax).round) %> (<%= converting_to_jpy((@product.price).round) %>)<span class="small"> 円</span></td>
         </tr>
         <tr>
           <td>販売ステータス</td>

@@ -3,7 +3,6 @@ class Customers::ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @cart_product = CartProduct.new
-    @tax = 1.08
   end
 
   def index
