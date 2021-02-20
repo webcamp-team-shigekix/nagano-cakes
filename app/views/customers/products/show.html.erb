@@ -11,30 +11,23 @@
       <h4 class="my-5">
         ¥ <%= converting_to_jpy((@product.price * @tax).round) %><span class="small"> (税込)</span>
       </h4>
-      <% if customer_signed_in? %>
-        <%= form_with url: cart_products_path, model: @cart_product, local: true do |f| %>
-          <div class="row">
-            <div class="col-lg-6">
-              <%= f.select :count, [["1", "1"], ["2", "2"], ["3", "3"], ["4", "4"], ["5", "5"], ["6", "6"], ["7", "7"], ["8", "8"], ["9", "9"], ["10", "10"]], {include_blank: '個数選択'}, class: "form-control" %>
-              <%= f.hidden_field :product_id, value: @product.id %>
+      <div class="into-cart">
+        <% if customer_signed_in? %>
+          <%= form_with url: cart_products_path, model: @cart_product, local: true do |f| %>
+            <div class="row">
+              <div class="col-lg-6">
+                <%= f.select :count, [["1", "1"], ["2", "2"], ["3", "3"], ["4", "4"], ["5", "5"], ["6", "6"], ["7", "7"], ["8", "8"], ["9", "9"], ["10", "10"]], {include_blank: '個数選択'}, class: "form-control" %>
+                <%= f.hidden_field :product_id, value: @product.id %>
+              </div>
+              <div class="col-lg-6">
+                <%= f.submit 'カートに入れる', class: "btn btn-success" %>
+              </div>
             </div>
-            <div class="col-lg-6">
-              <%= f.submit 'カートに入れる', class: "btn btn-success" %>
-            </div>
-          </div>
+          <% end %>
+        <% else %>
+            <p class="text-warning">購入するには、ログインが必要です。</p>
         <% end %>
-      <% end %>
+      </div>
     </div>
   </div>
 </div>
-<% if current_customer %>
-  <div class="into-cart">
-    <%= form_with url: cart_products_path, model: @cart_product, local: true do |f| %>
-      <%= f.select :count, [["1", "1"], ["2", "2"], ["3", "3"], ["4", "4"], ["5", "5"], ["6", "6"], ["7", "7"], ["8", "8"], ["9", "9"], ["10", "10"]], include_blank: '個数選択' %>
-      <%= f.hidden_field :product_id, value: @product.id %>
-      <%= f.submit 'カートに入れる' %>
-    <% end %>
-  </div>
-<% else %>
-  <p class="text-warning">購入するには、ログインが必要です。</p>
-<% end %>

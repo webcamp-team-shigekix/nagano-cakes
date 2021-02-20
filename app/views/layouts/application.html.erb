@@ -44,7 +44,12 @@
       </div>
     </nav>
     <div class="delete-after-development">
-      <%= link_to '（開発用）管理者ログイン', new_admin_session_path %>
+      <% if current_customer %>
+      <% elsif current_admin %>
+        管理者としてログイン中
+      <% else %>
+        <%= link_to '（開発用）管理者ログイン', new_admin_session_path %>
+      <% end %>
     </div>
     <div class="notice text-success">
       <% if flash[:notice] %>
