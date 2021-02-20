@@ -1,4 +1,5 @@
 class Customers::CartProductsController < ApplicationController
+  before_action :authenticate_customer!
 
   def index
     @cart_product = CartProduct.new

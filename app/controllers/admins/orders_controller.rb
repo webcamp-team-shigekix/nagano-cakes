@@ -1,4 +1,6 @@
 class Admins::OrdersController < ApplicationController
+  before_action :authenticate_admin!
+
   def index
     if params[:check] == "0"
       @orders = Order.all
@@ -18,7 +20,14 @@ class Admins::OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
     if @order.update(order_params)
-      flash[:notice] = "注文ステータスを変更しました"
+      if @order.order_status == 1
+        OrderedProduct.where(order_id: @order.id).each do |prod|
+          prod.update(production_status: 1)
+        end
+        flash[:notice] = "注文ステータスが「入金確認」となったため、制作ステージが「制作待ち」に自動更新されました"
+      else
+        flash[:notice] = "注文ステータスを変更しました"
+      end
       redirect_back(fallback_location: root_path)
     else
       flash[:notice] = "注文ステータスを変更できませんでした"
