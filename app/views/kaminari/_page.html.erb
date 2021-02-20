@@ -8,5 +8,5 @@
     remote:        data-remote
 -%>
 <span class="page<%= ' current btn btn-secondary btn-sm' if page.current? %> mx-1">
-  <%= link_to_unless page.current?, page, url, {remote: remote, rel: page.rel, class: "btn btn-outline-dark text-secondary btn-sm"} %>
+  <%= link_to_unless page.current?, page, url, {remote: remote, rel: page.rel, class: "btn btn-outline-secondary btn-sm"} %>
 </span>
