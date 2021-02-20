@@ -18,8 +18,10 @@ class Admins::OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
     if @order.update(order_params)
+      flash[:notice] = "注文ステータスを変更しました"
       redirect_back(fallback_location: root_path)
     else
+      flash[:notice] = "注文ステータスを変更できませんでした"
       render :show
     end
 

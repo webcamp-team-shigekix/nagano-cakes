@@ -14,10 +14,10 @@ class Customer < ApplicationRecord
   
   has_many :receivers, dependent: :destroy
   has_many :orders, dependent: :destroy
+  has_many :cart_products
   
   def active_for_authentication?
     super && (self.is_deleted == false)
   end
-  has_many :cart_products
   
 end
