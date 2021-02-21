@@ -32,9 +32,18 @@
           <tr>
             <td>注文ステータス</td>
             <td>
-              <%= form_with model: @order, url: admins_order_path do |f| %>
-                <%= f.select :order_status, [["入金待ち","0"],["入金確認","1"],["製作中","2"],["発送準備中","3"],["発送済み","4"]], included_blank: "#{@order.order_status}" %>
-                <%= f.submit '更新', class:"btn btn-success btn-sm" %>
+              <% if @order.order_status < 2 %>
+                <%= form_with model: @order, url: admins_order_path do |f| %>
+                  <%= f.select :order_status, [["入金待ち","0"],["入金確認","1"]], included_blank: "#{@order.order_status}" %>
+                  <%= f.submit '更新', class:"btn btn-success btn-sm" %>
+                <% end %>
+              <% elsif @order.order_status > 2 %>
+                <%= form_with model: @order, url: admins_order_path do |f| %>
+                  <%= f.select :order_status, [["発送準備中","3"],["発送済み","4"]], included_blank: "#{@order.order_status}" %>
+                  <%= f.submit '更新', class:"btn btn-success btn-sm" %>
+                <% end %>
+              <% else %>
+                製作中（制作ステータスが全て「制作完了」になると自動更新されます）
               <% end %>
             </td>
           </tr>
@@ -63,9 +72,23 @@
                 <td><%= prod.count %></td>
                 <td><%= (prod.product.price*$tax).floor*prod.count %></td>
                 <td>
-                  <%= form_with model: prod, url: admins_ordered_product_path(prod.id) do |f| %>
-                    <%= f.select :production_status, [["制作不可","0"],["制作待ち","1"],["製作中","2"],["制作完了","3"]], included_blank: "#{prod.production_status}" %>
-                    <%= f.submit '更新', class:"btn btn-success btn-sm" %>
+                  <% if prod.production_status == 0 %>
+                    制作不可（注文ステータスが「入金確認」になると自動更新されます）
+                  <% elsif prod.production_status == 1 %>
+                    <%= form_with model: prod, url: admins_ordered_product_path(prod.id) do |f| %>
+                      <%= f.select :production_status, [["制作待ち","1"],["製作中","2"]], included_blank: "#{prod.production_status}" %>
+                      <%= f.submit '更新', class:"btn btn-success btn-sm" %>
+                    <% end %>
+                  <% elsif prod.production_status == 3 %>
+                    <%= form_with model: prod, url: admins_ordered_product_path(prod.id) do |f| %>
+                      <%= f.select :production_status, [["製作中","2"],["制作完了","3"]], included_blank: "#{prod.production_status}" %>
+                      <%= f.submit '更新', class:"btn btn-success btn-sm" %>
+                    <% end %>
+                  <% else %>
+                    <%= form_with model: prod, url: admins_ordered_product_path(prod.id) do |f| %>
+                      <%= f.select :production_status, [["制作待ち","1"],["製作中","2"],["制作完了","3"]], included_blank: "#{prod.production_status}" %>
+                      <%= f.submit '更新', class:"btn btn-success btn-sm" %>
+                    <% end %>
                   <% end %>
                 </td>
               </tr>

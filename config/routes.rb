@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get '/about' => 'homes#about'
 
   post '/orders/confirm' => 'customers/orders#confirm'
+  get '/orders/confirm' => 'customers/orders#redirect'
   get '/orders/finish' => 'customers/orders#finish'
   delete "/cart_product/destroy_all" => "customers/cart_products#destroy_all"
 

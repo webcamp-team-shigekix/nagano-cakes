@@ -1,4 +1,5 @@
 class Customers::OrdersController < ApplicationController
+  before_action :authenticate_customer!
 
   def new
     if CartProduct.where(customer_id: current_customer.id).count == 0
@@ -8,6 +9,10 @@ class Customers::OrdersController < ApplicationController
   end
 
   def confirm
+    if params[:way_to_pay]
+    else
+      redirect_to new_orders_path
+    end
     @order = Order.new
     case params[:way_to_pay]
     when "0"
@@ -70,6 +75,10 @@ class Customers::OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @ordered_products = OrderedProduct.where(order_id: @order.id)
+  end
+
+  def redirect
+    redirect_to new_orders_path
   end
 
   private

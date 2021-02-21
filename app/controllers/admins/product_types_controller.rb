@@ -1,4 +1,5 @@
 class Admins::ProductTypesController < ApplicationController
+  before_action :authenticate_admin!
 
   def index
     @product_type_new = ProductType.new
