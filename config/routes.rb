@@ -39,6 +39,8 @@ Rails.application.routes.draw do
     resources :customers, except: [:new,:create,:destroy]
     resources :orders, only: [:index,:show,:update]
     resources :ordered_products, only: [:update]
+    get 'searches' => 'searches#search'
+    post 'searches' => 'searches#search'
   end
 
 end
