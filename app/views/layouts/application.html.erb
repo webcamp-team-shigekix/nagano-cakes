@@ -23,7 +23,7 @@
             <%= link_to "マイページ", customers_path, class: "btn btn-info" %>
             <%= link_to '商品一覧', products_path, class: "btn btn-info" %>
             <%= link_to "カート", cart_products_path, class: "btn btn-info" %>
-            <%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: "btn btn-info" %>
+            <%= link_to 'ログアウト', destroy_customer_session_path(logout: 0), method: :delete, class: "btn btn-info" %>
           </div>
         <% elsif admin_signed_in? %>
           <div class="row">
@@ -31,15 +31,7 @@
             <%= link_to '会員一覧', admins_customers_path, class: "btn btn-info" %>
             <%= link_to '注文履歴一覧', admins_orders_path(check: 0), class: "btn btn-info" %>
             <%= link_to 'ジャンル一覧', admins_product_types_path, class: "btn btn-info" %>
-            <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "btn btn-info" %>
-            
-          </div>
-          <div class="offset-lg-8 col-lg-4">
-            <%= form_with url: admins_searches_path, local: true do |f| %>
-              <%= f.text_field :content %>
-              <%= f.select 'model', options_for_select({ "会員" => "Customers", "商品" => "Products" }) %>
-              <%= f.submit :検索 %> 
-            <% end %>
+            <%= link_to 'ログアウト', destroy_admin_session_path(logout: 1), method: :delete, class: "btn btn-info" %>
           </div>
         <% else %>
           <div>
@@ -52,7 +44,12 @@
       </div>
     </nav>
     <div class="delete-after-development">
-      <%= link_to '（開発用）管理者ログイン', new_admin_session_path %>
+      <% if current_customer %>
+      <% elsif current_admin %>
+        管理者としてログイン中
+      <% else %>
+        <%= link_to '（開発用）管理者ログイン', new_admin_session_path %>
+      <% end %>
     </div>
     <div class="notice text-success">
       <% if flash[:notice] %>
