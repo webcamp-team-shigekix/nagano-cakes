@@ -1,4 +1,6 @@
 class Customers::ReceiversController < ApplicationController
+  before_action :authenticate_customer!
+  
   def index
     @receivers = Receiver.where(customer_id: current_customer.id)
     @receiver = Receiver.new
