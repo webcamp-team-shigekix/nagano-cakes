@@ -1,55 +1,56 @@
 <div class="container my-5">
   <h3 class="text-left">注文情報確認</h3>
   <div class="row-lg-12 my-3 ml-3 d-flex justify-content-between">
-    <div class="col-lg-9">
+    <div class="col-lg-8">
       <table class="table-bordered">
-        <tr>
-          <th width=370>商品名</th>
-          <th width=100>単価（税込）</th>
-          <th width=100>数量</th>
-          <th width=100>小計</th>
+        <tr class="table-active">
+          <th width=360 class="border border-dark">商品名</th>
+          <th width=110 class="border border-dark">単価（税込）</th>
+          <th width=110 class="border border-dark">数量</th>
+          <th width=110 class="border border-dark">小計</th>
         </tr>
         <% @cart_products.each do |c_product| %>
           <% taxincluded = (c_product.product.price*$tax).floor %>
           <% sum = taxincluded*c_product.count %>
           <% @total_price += sum %>
           <tr>
-            <td><%= attachment_image_tag(c_product.product, :image, fallback: "no_image.jpg", size: "50x50" ) %><%= c_product.product.name %></td>
-            <td><%= taxincluded %></td>
-            <td><%= c_product.count %></td>
-            <td><%= sum %></td>
+            <td class="border border-dark"><%= attachment_image_tag(c_product.product, :image, fallback: "no_image.jpg", size: "50x50" ) %><%= c_product.product.name %></td>
+            <td class="border border-dark"><%= taxincluded %></td>
+            <td class="border border-dark"><%= c_product.count %></td>
+            <td class="border border-dark"><%= sum %></td>
           </tr>
         <% end %>
         <% total_pay = @total_price + $ship %>
       </table>
-    <div class="col-lg-3">
+    </div>
+    <div class="col-lg-4">
       <table class="table-bordered">
         <tr>
-          <td width=100>送料</td>
-          <td width=100><%= $ship %></td>
+          <th class="table-active border border-dark" width=100>送料</th>
+          <td width=100 class="border border-dark"><%= $ship %></td>
         </tr>
         <tr>
-          <td width=100>商品合計</td>
-          <td width=100><%= @total_price %></td>
+          <th class="table-active border border-dark" width=100>商品合計</th>
+          <td width=100 class="border border-dark"><%= @total_price %></td>
         </tr>
         <tr>
-          <td width=100>請求金額</td>
-          <td width=100><%= total_pay %></td>
+          <th class="table-active border border-dark" width=100>請求金額</th>
+          <td width=100 class="border border-dark"><%= total_pay %></td>
         </tr>
       </table>
     </div>
   </div>
 
-  <div class="row-lg-12">
-    <div class="col my-3">
-      支払方法<%= @way_to_pay %>
+  <div class="row-lg-12 ml-3 mt-5">
+    <div class="col my-3 d-flex">
+      <p class="font-weight-bold mr-3">支払方法</p><%= @way_to_pay %>
     </div>
-    <div class="col my-3">
-      お届け先：<%= @p_code %><%= @address %><br><%= @name %>
+    <div class="col my-3 d-flex">
+      <p class="font-weight-bold mr-3">お届け先</p><%= @p_code %><%= @address %><br><%= @name %>
     </div>
   </div>
 
-  <div class="row-lg-12 d-flex justify-content-center ">
+  <div class="row-lg-12 d-flex justify-content-center mt-5">
     <%= form_with model: @order, local: true do |f| %>
       <%= f.hidden_field :how_to_pay, value: params[:way_to_pay] %>
       <%= f.hidden_field :postal_code, value: @p_code %>
