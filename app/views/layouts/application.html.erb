@@ -35,9 +35,9 @@
             
           </div>
           <div class="offset-lg-8 col-lg-4">
-            <%= form_with url: root_path, local: true do |f| %>
-              <%= f.text_field :content, placeholder: "ダミー" %>
-              <%= f.select 'model', options_for_select({ "会員" => "customers", "商品" => "products" }) %>
+            <%= form_with url: admins_searches_path, local: true do |f| %>
+              <%= f.text_field :content %>
+              <%= f.select 'model', options_for_select({ "会員" => "Customers", "商品" => "Products" }) %>
               <%= f.submit :検索 %> 
             <% end %>
           </div>
