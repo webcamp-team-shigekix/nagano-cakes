@@ -1,49 +1,56 @@
-<h1>配送先一覧</h1>
-
-<div class="receiver-index">
-  <% if @receivers.count == 0 %>
-    ...配送先は登録されておりません...
-  <% else %>
-    <table>
-      <thead>
-        <tr>
-          <th>郵便番号</th>
-          <th>住所</th>
-          <th>宛名</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @receivers.each do |receiver| %>
+<div class="container mt-3">
+  <h1>配送先一覧</h1>
+  <div class="row mt-3">
+    <div class="new-receiver">
+      <%= form_with model: @receiver, local:true do |f| %>
+        <table>
           <tr>
-            <td><%= receiver.postal_code %></td>
-            <td><%= receiver.address %></td>
-            <td><%= receiver.name %></td>
-            <td><%= link_to '編集', edit_receiver_path(receiver.id) %></td>
-            <td><%= link_to '削除', receiver_path(receiver.id), method: :delete %></td>
+            <td>郵便番号</td>
+            <td><%= f.text_field :postal_code %></td>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% end %>
-</div>
-
-<div class="new-receiver">
-  <%= form_with model: @receiver, local:true do |f| %>
-    <table>
-      <tr>
-        <td>郵便番号</td>
-        <td><%= f.text_field :postal_code %></td>
-      </tr>
-      <tr>
-        <td>住所</td>
-        <td><%= f.text_field :address, size: 60 %></td>
-      </tr>
-      <tr>
-        <td>宛名</td>
-        <td><%= f.text_field :name %></td>
-      </tr>
-    </table>
-    <%= f.hidden_field :customer_id, value: current_customer.id %>
-    <%= f.submit '新規配送先を追加' %>
-  <% end %>
+          <tr>
+            <td>住所</td>
+            <td><%= f.text_field :address, size: 60 %></td>
+          </tr>
+          <tr>
+            <td>宛名</td>
+            <td><%= f.text_field :name %></td>
+          </tr>
+        </table>
+        <%= f.hidden_field :customer_id, value: current_customer.id %>
+        <%= f.submit '新規配送先を追加', class:"btn btn-success my-3" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="receiver-index">
+      <% if @receivers.count == 0 %>
+        ...配送先は登録されておりません...
+      <% else %>
+        <table class="table-bordered">
+          <thead>
+            <tr>
+              <th width="100">郵便番号</th>
+              <th width="300">住所</th>
+              <th width="100">宛名</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @receivers.each do |receiver| %>
+              <tr>
+                <td><%= receiver.postal_code %></td>
+                <td><%= receiver.address %></td>
+                <td><%= receiver.name %></td>
+                <td align="center" valign="middle">
+                  <%= link_to '編集する', edit_receiver_path(receiver.id), class:"btn btn-success" %>
+                  <%= link_to '削除する', receiver_path(receiver.id), method: :delete, class:"btn btn-danger" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
+    </div>
+  </div>
 </div>
