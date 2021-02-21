@@ -15,7 +15,7 @@
           <% @customers.each do |customer| %>
             <tr>
               <td width="80"><%= customer.id %></td>
-              <td class="text-black" width="150"><%= link_to "#{customer.family_name}#{customer.first_name}", admins_customer_path(customer.id) %></td>
+              <td width="150"><%= link_to "#{customer.family_name}#{customer.first_name}", admins_customer_path(customer.id) %></td>
               <td width="200"><%= customer.email %></td>
               <td width="150">
                 <% if customer.is_deleted == false %>
@@ -29,7 +29,7 @@
         </tbody>
       </table>
       <div class="pagination justify-content-center">
-      <%= paginate @customers %>
+        <%= paginate @customers %>
       </div>
     </div>
   </div>
