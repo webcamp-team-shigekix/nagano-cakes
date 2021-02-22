@@ -1,16 +1,20 @@
-<div class="container">
-  <div class="row mt-3">
-    <h1>注文履歴一覧</h1>
-    <div class="col-md-10 offset-md-1 mt-3 mb-4">
+<div class="container my-5">
+  <div class="row mb-3">
+    <div class="col-md-3 offset-md-1">
+      <h4 class="bg-light text-center">注文履歴一覧</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
       <div class="notice text-danger">
         <% if @notice %>
           <%= @notice %>
         <% end %>
       </div>
       <div class="order-list">
-        <table class="table">
+        <table class="table table-hover border-bottom">
           <thead>
-            <tr>
+            <tr class="table-secondary">
               <th width="200">購入日時</th>
               <th width="200">購入者</th>
               <th width="200">注文個数</th>

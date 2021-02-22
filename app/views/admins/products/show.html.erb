@@ -1,8 +1,10 @@
 <div class="container my-5">
   <div class="row">
-    <div class="col-md-10 offset-1">
-      <h4>商品詳細</h4>
+    <div class="col-md-2 offset-1">
+      <h4 class="bg-light text-center">商品詳細</h4>
     </div>
+  </div>
+  <div class="row">
     <div class="col-md-4 offset-md-2"><%= attachment_image_tag(@product, :image, fallback: "no_image.jpg", size: "250x250" ) %></div>
     <div class="col-md-4 py-3">
       <table class="table">
