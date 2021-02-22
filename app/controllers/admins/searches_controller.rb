@@ -2,7 +2,7 @@ class Admins::SearchesController < ApplicationController
     def search
         content = params[:content]
         model = params[:model]
-        if model == "Customers"
+        if model == "Customer"
             @customers = Customer.where("email LIKE ?", "%#{content}%")\
                          .or(Customer.where(" family_name||first_name LIKE ?", "%#{content}%"))\
                          .or(Customer.where(" family_name_kana||first_name_kana LIKE ?", "%#{content}%"))\
