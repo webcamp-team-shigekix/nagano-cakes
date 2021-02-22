@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   namespace :customers do
-    get 'products_search/search'
+    get '/products_search/type' => 'products_search#type'
   end
   devise_for :admins, controllers: {
     sessions: 'admins/sessions',
@@ -40,7 +40,6 @@ Rails.application.routes.draw do
     resources :orders, only: [:index,:show,:update]
     resources :ordered_products, only: [:update]
     get 'searches' => 'searches#search'
-    post 'searches' => 'searches#search'
   end
 
 end

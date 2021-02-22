@@ -11,8 +11,10 @@
             </div>
         </div>
     </div>
-    <div class="col-md-12">
-        <h3 class="text-left">新着商品</h3>
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="text-left">新着商品</h3>
+        </div>
     </div>
     <div class="row d-flex justify-content-center my-3">
         <% @products.reverse.each do |product| %>
@@ -28,18 +30,22 @@
                 <% end %>
             </div>
         <% end %>
-    </div>
-    <div class="col-md-12 mt-5">
-        <h3 class="text-left">ジャンル検索</h3>
-    </div>
-    <div class="row my-3">
-        <div class="col-md-9 d-flex flex-wrap">
-            <% @product_types.each do |product_type| %>
-                <div class="btn-group w-25"><%= link_to product_type.name, customers_products_search_search_path('search[value]': product_type.id, 'search[how]': "match"), class: "btn btn-outline-secondary rounded-0" %></div>
-            <% end %>
-        </div>
-        <div class="col-md-3 d-flex justify-content-end">
+        <div class="col-md-12 d-flex justify-content-end mt-3">
            <p class="text-right"><%= link_to "全ての商品を見る>", products_path, class: "btn btn-outline-secondary" %></p>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-md-12">
+            <h3 class="text-left">ジャンル検索</h3>
+            <p class="text-center">検索したいジャンルを入力してください。</p>
+        </div>
+        <div class="col-md-12 d-flex justify-content-center">
+            <%= form_with url: customers_products_search_type_path , method: :get, local: true do |f|%>
+                <div class="col-md-12 d-flex">
+                    <div><%= f.collection_select :type, ProductType.all, :id, :name, { prompt: "すべて" }, class: "form-control" %></div>
+                    <div><%= f.submit '検索', class: "btn btn-outline-secondary"%></div>
+                </div>
+            <% end %>
         </div>
     </div>
 </div>

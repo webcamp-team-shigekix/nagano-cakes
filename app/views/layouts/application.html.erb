@@ -34,9 +34,9 @@
             <%= link_to 'ログアウト', destroy_admin_session_path(logout: 1), method: :delete, class: "btn btn-info" %>
           </div>
           <div class="offset-md-8 col-md-4">
-            <%= form_with url: admins_searches_path, local: true do |f| %>
+            <%= form_with url: admins_searches_path, method: :get, local: true do |f| %>
               <%= f.text_field :content %>
-              <%= f.select 'model', options_for_select({ "会員" => "Customers", "商品" => "Products" }) %>
+              <%= f.select 'model', options_for_select({ "会員" => "Customer", "商品" => "Product" }) %>
               <%= f.submit :検索 %>
             <% end %>
           </div>
