@@ -27,14 +27,24 @@ class Customers::OrdersController < ApplicationController
       @address = params[:address0]
       @name = params[:receiver_name0]
     when "1"
-      receiver = Receiver.find_by(postal_code: params[:info1])
-      @p_code = receiver.postal_code
-      @address = receiver.address
-      @name = receiver.name
+      if Receiver.where(customer_id: current_customer.id).count != 0
+        receiver = Receiver.find_by(postal_code: params[:info1])
+        @p_code = receiver.postal_code
+        @address = receiver.address
+        @name = receiver.name
+      else
+        flash[:notice] = "配送先は登録されていません"
+        render :new
+      end
     when "2"
-      @p_code = params[:postal_code2]
-      @address = params[:address2]
-      @name = params[:receiver_name2]
+      if params[:postal_code2].blank? || params[:address2].blank? || params[:receiver_name2].blank?
+        flash[:notice] = "選択されたフォームに空欄があります"
+        render :new
+      else
+        @p_code = params[:postal_code2]
+        @address = params[:address2]
+        @name = params[:receiver_name2]
+      end
     end
 
     @total_price = 0
