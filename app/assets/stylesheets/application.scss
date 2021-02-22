@@ -28,3 +28,11 @@ body{
     position: absolute;
     bottom: 0;
 }
+
+.table-bordered > thead > tr > th{
+    border:2px solid gray;
+}
+
+.table-bordered > tbody > tr > td{
+    border:2px solid gray;
+}

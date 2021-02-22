@@ -1,16 +1,20 @@
-<div class="container mt-4">
-  <h3>マイページ</h3>
-    <div class="row">
+<div class="container my-5">
+  <div class="row">
+    <div class="col-md-2">
+      <h4 class="bg-light text-center">マイページ</h4>
+    </div>
+  </div>
+  <div class="row">
         <div class="customer-info-table mt-3">
           <table >
             <tr>
-              <td width="150"><h4>登録情報</h4></td>
+              <td width="150"><h5>登録情報</h5></td>
               <td><%= link_to "編集する", edit_customer_registration_path, class:"btn btn-success" %></td>
             </tr>
           </table>
             <table class="table table-bordered mt-4">
-              <col span="1" width=150>
-              <col span="1" width=250>
+              <col span="1" width=150  class="table-active">
+              <col span="1" width=400>
                 <tr>
                   <td>氏名</td>
                   <td><%= @customer.family_name %> <%= @customer.first_name %></td>
@@ -38,12 +42,12 @@
             </table>
             <table>
               <tr class="receiver">
-                  <td width="150"><h4>配送先</h4></td>
-                  <td><%= link_to '一覧を見る', receivers_path, class:"btn btn-primary mb-2" %></td>
+                  <td width="150"><h5>配送先</h5></td>
+                  <td><%= link_to '一覧を見る', receivers_path, class:"btn btn-primary my-3" %></td>
               </tr>
               <tr class="order">
-                  <td width="150"><h4>注文履歴</h4></td>
-                  <td><%= link_to '注文履歴', orders_path, class:"btn btn-primary mb-2" %></td>
+                  <td width="150"><h5>注文履歴</h5></td>
+                  <td><%= link_to '一覧を見る', orders_path, class:"btn btn-primary" %></td>
               </tr>
             </table>
         </div>

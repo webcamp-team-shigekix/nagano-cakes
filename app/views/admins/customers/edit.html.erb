@@ -1,5 +1,9 @@
-<div class="container">
-    <h3>会員情報編集</h3>
+<div class="container my-5">
+    <div class="row mb-4">
+        <div class="col-md-2">
+            <h4 class="bg-light text-center">会員情報編集</h4>
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-10">
         <%= form_with model: @customer, url: admins_customer_path , local: true do |f| %>
@@ -48,13 +52,13 @@
                     <td></td>
                     <td>
                         <div class="actions">
-                        <%= f.submit "変更を保存する", class:"btn btn-success mb-3" %>
+                        <%= f.submit "変更を保存する", class:"btn btn-success mt-4" %>
                         </div>
                     </td>
                 </tr>
             </table>
         <% end %>
-    </div>
+        </div>
     </div>
 </div>
 
