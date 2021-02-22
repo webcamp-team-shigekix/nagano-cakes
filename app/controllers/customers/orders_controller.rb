@@ -2,13 +2,15 @@ class Customers::OrdersController < ApplicationController
   before_action :authenticate_customer!
 
   def new
-    if CartProduct.where(customer_id: current_customer.id).count == 0
+    @customer = current_customer
+    if current_customer.cart_products.count == 0
       flash[:notice] = "カートは空です"
       redirect_back(fallback_location: root_path)
     end
   end
 
   def confirm
+    @customer = current_customer
     if params[:way_to_pay]
     else
       redirect_to new_orders_path
@@ -27,7 +29,7 @@ class Customers::OrdersController < ApplicationController
       @address = params[:address0]
       @name = params[:receiver_name0]
     when "1"
-      if Receiver.where(customer_id: current_customer.id).count != 0
+      if current_customer.receivers.count != 0
         receiver = Receiver.find_by(postal_code: params[:info1])
         @p_code = receiver.postal_code
         @address = receiver.address
@@ -48,7 +50,7 @@ class Customers::OrdersController < ApplicationController
     end
 
     @total_price = 0
-    @cart_products = CartProduct.where(customer_id: current_customer.id)
+    @cart_products = current_customer.cart_products
   end
 
   def create
@@ -57,13 +59,14 @@ class Customers::OrdersController < ApplicationController
     @order.shipping_cost = $ship
     if @order.save
       # カート内商品の種類の数だけ@ordered_productを作ってカラムに値入れて全部save、その後カート内全削除
-      @cart_products = CartProduct.where(customer_id: current_customer.id)
+      @cart_products = current_customer.cart_products
       @cart_products.each do |cart_p|
-        @ordered_product = OrderedProduct.new
-        @ordered_product.order_id = @order.id
-        @ordered_product.product_id = cart_p.product_id
-        @ordered_product.count = cart_p.count
-        @ordered_product.tax_included_price = cart_p.product.price*$tax
+        @ordered_product = OrderedProduct.new(
+          order_id: @order.id,
+          product_id: cart_p.product_id,
+          count: cart_p.count,
+          tax_included_price: cart_p.product.price*$tax
+        )
         @ordered_product.save
       end
       @cart_products.destroy_all
@@ -79,12 +82,12 @@ class Customers::OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.where(customer_id: current_customer.id)
+    @orders = current_customer.orders
   end
 
   def show
     @order = Order.find(params[:id])
-    @ordered_products = OrderedProduct.where(order_id: @order.id)
+    @ordered_products = @order.ordered_products
   end
 
   def redirect
