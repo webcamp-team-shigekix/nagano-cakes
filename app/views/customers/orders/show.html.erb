@@ -6,49 +6,47 @@
   </div>
   <div class="row mt-4">
     <div class="col-md-5">
-        <div class="order-info">
-          <table class="table-bordered">
-            <col span="1" class="table-secondary">
-            <p><strong>注文情報</strong></p>
-            <tr>
-              <td width="150" height="50">注文日</td>
-              <td width="300"><%= @order.created_at.strftime("%Y/%m/%d") %></td>
-            </tr>
-            <tr>
-              <td>配送先</td>
-              <td>
-                <%= @order.postal_code %><br><%= @order.address %><br><%= @order.receiver_name %>
-              </td>
-            <tr>
-              <td height="50">支払方法</td>
-              <td>
-                <% case @order.how_to_pay %>
-                <% when 0 %>
-                  クレジットカード
-                <% when 1 %>
-                  銀行振込
-                <% end %>
-              </td>
-            </tr>
-            <tr>
-              <td height="50">ステータス</td>
-              <td>
-                <% case @order.order_status %>
-                  <% when 0 %>
-                    入金待ち
-                  <% when 1 %>
-                    入金確認
-                  <% when 2 %>
-                    製作中
-                  <% when 3 %>
-                    発送準備中
-                  <% when 4 %>
-                    発送済み
-                  <% end %>
-              </td>
-            </tr>
-          </table>
-      </div>
+      <table class="table-bordered">
+        <col span="1" class="table-secondary">
+        <p><strong>注文情報</strong></p>
+        <tr>
+          <td width="150" height="50">注文日</td>
+          <td width="300"><%= @order.created_at.strftime("%Y/%m/%d") %></td>
+        </tr>
+        <tr>
+          <td>配送先</td>
+          <td>
+            <%= @order.postal_code %><br><%= @order.address %><br><%= @order.receiver_name %>
+          </td>
+        <tr>
+          <td height="50">支払方法</td>
+          <td>
+            <% case @order.how_to_pay %>
+            <% when 0 %>
+              クレジットカード
+            <% when 1 %>
+              銀行振込
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td height="50">ステータス</td>
+          <td>
+            <% case @order.order_status %>
+              <% when 0 %>
+                入金待ち
+              <% when 1 %>
+                入金確認
+              <% when 2 %>
+                製作中
+              <% when 3 %>
+                発送準備中
+              <% when 4 %>
+                発送済み
+              <% end %>
+          </td>
+        </tr>
+      </table>
     </div>
     <div class="col-md-5">
       <div class="payment-info">

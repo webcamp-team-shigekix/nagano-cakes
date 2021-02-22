@@ -27,7 +27,7 @@
               <tr>
                 <td><%= order.created_at.strftime("%Y/%m/%d %H:%M") %></td>
                 <td><%= order.customer.family_name + order.customer.first_name %></td>
-                <td><%= OrderedProduct.where(order_id: order.id).count %></td>
+                <td><%= order.ordered_products.sum(:count) %></td>
                 <td>
                   <% case order.order_status %>
                   <% when 0 %>

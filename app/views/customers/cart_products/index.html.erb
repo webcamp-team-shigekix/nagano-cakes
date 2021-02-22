@@ -37,7 +37,7 @@
                 <td><%= taxincluded %></td>
                 <td align="center" valign="middle">
                   <%= form_with model: @cart_product, url: cart_product_path(cart_product.id), local: true, method: :patch do |f| %>
-                    <div class="form-group"style="margin:0px;">
+                    <div class="form-group" style="margin: 0px;">
                       <%= f.select :count, [["1", "1"], ["2", "2"], ["3", "3"], ["4", "4"], ["5", "5"], ["6", "6"], ["7", "7"], ["8", "8"], ["9", "9"], ["10", "10"]], include_blank: "#{cart_product.count}" %>
                       <%= f.submit '変更', class:"btn btn-success"%>
                     </div>
