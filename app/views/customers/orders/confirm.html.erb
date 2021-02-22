@@ -1,7 +1,7 @@
 <div class="container my-5">
   <h3 class="text-left">注文情報確認</h3>
-  <div class="row-lg-12 my-3 ml-3 d-flex justify-content-between">
-    <div class="col-lg-8">
+  <div class="row-md-12 my-3 ml-3 d-flex justify-content-between">
+    <div class="col-md-8">
       <table class="table-bordered">
         <tr class="table-active">
           <th width=360 class="border border-dark">商品名</th>
@@ -23,7 +23,7 @@
         <% total_pay = @total_price + $ship %>
       </table>
     </div>
-    <div class="col-lg-4">
+    <div class="col-md-4">
       <table class="table-bordered">
         <tr>
           <th class="table-active border border-dark" width=100>送料</th>
@@ -41,7 +41,7 @@
     </div>
   </div>
 
-  <div class="row-lg-12 ml-3 mt-5">
+  <div class="row-md-12 ml-3 mt-5">
     <div class="col my-3 d-flex">
       <p class="font-weight-bold mr-3">支払方法</p><%= @way_to_pay %>
     </div>
@@ -50,7 +50,7 @@
     </div>
   </div>
 
-  <div class="row-lg-12 d-flex justify-content-center mt-5">
+  <div class="row-md-12 d-flex justify-content-center mt-5">
     <%= form_with model: @order, local: true do |f| %>
       <%= f.hidden_field :how_to_pay, value: params[:way_to_pay] %>
       <%= f.hidden_field :postal_code, value: @p_code %>

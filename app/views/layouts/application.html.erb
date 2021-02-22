@@ -33,7 +33,7 @@
             <%= link_to 'ジャンル一覧', admins_product_types_path, class: "btn btn-info" %>
             <%= link_to 'ログアウト', destroy_admin_session_path(logout: 1), method: :delete, class: "btn btn-info" %>
           </div>
-          <div class="offset-lg-8 col-lg-4">
+          <div class="offset-md-8 col-md-4">
             <%= form_with url: admins_searches_path, local: true do |f| %>
               <%= f.text_field :content %>
               <%= f.select 'model', options_for_select({ "会員" => "Customers", "商品" => "Products" }) %>
@@ -64,7 +64,7 @@
       <% end %>
     </div>
     <%= yield %>
-    <div class="footer bg-info col-lg-12">
+    <div class="footer bg-info col-md-12">
       <p class="text-center text-white p-4">NaganoCake</p>
     </div>
   </body>
