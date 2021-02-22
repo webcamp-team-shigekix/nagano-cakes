@@ -20,12 +20,12 @@ class Customers::SessionsController < Devise::SessionsController
   # end
 
   protected
-  
+
     def reject_deleted_customer
       @customer = Customer.find_by(email: params[:customer][:email].downcase)
       if @customer
         if (@customer.valid_password?(params[:customer][:password]) && (@customer.active_for_authentication? == false))
-          flash[:error] = "退会済みです。"
+          flash[:notice] = "退会済みです。"
           redirect_back(fallback_location: root_path)
         end
       end
