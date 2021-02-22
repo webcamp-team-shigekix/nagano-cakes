@@ -3,6 +3,7 @@ class Admins::OrderedProductsController < ApplicationController
 
   def update
     @ordered_product = OrderedProduct.find(params[:id])
+    
     if @ordered_product.update(prod_params)
       if @ordered_product.production_status == 2
         @ordered_product.order.update(order_status: 2)

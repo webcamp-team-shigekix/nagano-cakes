@@ -37,25 +37,25 @@
         <div class="col-md-2"></div>
       </div>
 
-      <div class="row">
-        <div class="col-md-2"><%= f.label :新しいパスワード（変更しない場合は何も入力しないでください）%></div>
-        <div class="col-md-2"><%= f.password_field :password, autocomplete: "new-password" %></div>
-        <div class="col-md-2">
-          <% if @minimum_password_length %>
-            (<%= @minimum_password_length %>文字以上)
-          <% end %>
-          </div>
-      </div>
+      <!--<div class="row">-->
+      <!--  <div class="col-md-2"><%= f.label :新しいパスワード（変更しない場合は何も入力しないでください）%></div>-->
+      <!--  <div class="col-md-2"><%= f.password_field :password, autocomplete: "new-password" %></div>-->
+      <!--  <div class="col-md-2">-->
+      <!--    <% if @minimum_password_length %>-->
+      <!--      (<%= @minimum_password_length %>文字以上)-->
+      <!--    <% end %>-->
+      <!--    </div>-->
+      <!--</div>-->
 
-      <div class="row">
-        <div class="col-md-2">パスワード（確認）</div>
-        <div class="col-md-2"><%= f.password_field :password_confirmation, autocomplete: "new-password" %></div>
-        <div class="col-md-2">
-          <% if @minimum_password_length %>
-            (<%= @minimum_password_length %>文字以上)
-          <% end %>
-        </div>
-      </div>
+      <!--<div class="row">-->
+      <!--  <div class="col-md-2">パスワード（確認）</div>-->
+      <!--  <div class="col-md-2"><%= f.password_field :password_confirmation, autocomplete: "new-password" %></div>-->
+      <!--  <div class="col-md-2">-->
+      <!--    <% if @minimum_password_length %>-->
+      <!--      (<%= @minimum_password_length %>文字以上)-->
+      <!--    <% end %>-->
+      <!--  </div>-->
+      <!--</div>-->
 
       <div class="field row mt-1">
         <div class="col-md-2"><%= f.label :現在のパスワードを入力してください（必須） %></div>
