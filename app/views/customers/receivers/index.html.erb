@@ -9,7 +9,7 @@
       <%= form_with model: @receiver, local:true do |f| %>
         <table>
           <tr>
-            <td width=250>郵便番号(ハイフンなし)</td>
+            <td>郵便番号(ハイフンなし)</td>
             <td><%= f.text_field :postal_code %></td>
           </tr>
           <tr>
@@ -34,9 +34,9 @@
         <table class="table-bordered">
           <thead>
             <tr>
-              <th width="100">郵便番号</th>
-              <th width="300">住所</th>
-              <th width="100">宛名</th>
+              <th>郵便番号</th>
+              <th>住所</th>
+              <th>宛名</th>
               <th></th>
             </tr>
           </thead>

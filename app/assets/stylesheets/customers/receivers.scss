@@ -1,3 +1,19 @@
 // Place all the styles related to the customers::receivers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.new-receiver td {
+  width: 250px;
+}
+.receiver-index th {
+  background-color: #ddd;
+}
+.receiver-index th:nth-child(1){
+  width: 100px;
+  height: 60px;
+}
+.receiver-index th:nth-child(2){
+  width: 300px;
+}
+.receiver-index th:nth-child(3){
+  width: 130px;
+}

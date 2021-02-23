@@ -4,44 +4,48 @@
       <h4 class="bg-light text-center">注文情報確認</h4>
       </div>
     </div>
-  <div class="row-md-12 my-3 ml-3 d-flex justify-content-between">
+  <div class="row">
     <div class="col-md-8">
-      <table class="table-bordered">
-        <tr class="table-active">
-          <th width=360 class="border border-dark">商品名</th>
-          <th width=110 class="border border-dark">単価（税込）</th>
-          <th width=110 class="border border-dark">数量</th>
-          <th width=110 class="border border-dark">小計</th>
-        </tr>
-        <% @cart_products.each do |c_product| %>
-          <% taxincluded = (c_product.product.price*$tax).floor %>
-          <% sum = taxincluded*c_product.count %>
-          <% @total_price += sum %>
+      <div class="order-confirm">
+        <table class="table-bordered">
           <tr>
-            <td class="border border-dark"><%= attachment_image_tag(c_product.product, :image, fallback: "no_image.jpg", size: "50x50" ) %><%= c_product.product.name %></td>
-            <td class="border border-dark"><%= taxincluded %></td>
-            <td class="border border-dark"><%= c_product.count %></td>
-            <td class="border border-dark"><%= sum %></td>
+            <th>商品名</th>
+            <th>単価（税込）</th>
+            <th>数量</th>
+            <th>小計</th>
           </tr>
-        <% end %>
-        <% total_pay = @total_price + $ship %>
-      </table>
+          <% @cart_products.each do |c_product| %>
+            <% taxincluded = (c_product.product.price*$tax).floor %>
+            <% sum = taxincluded*c_product.count %>
+            <% @total_price += sum %>
+            <tr>
+              <td><%= attachment_image_tag(c_product.product, :image, fallback: "no_image.jpg", size: "50x50" ) %><%= c_product.product.name %></td>
+              <td><%= taxincluded %></td>
+              <td><%= c_product.count %></td>
+              <td><%= sum %></td>
+            </tr>
+          <% end %>
+          <% total_pay = @total_price + $ship %>
+        </table>
+      </div>
     </div>
-    <div class="col-md-4">
-      <table class="table-bordered">
-        <tr>
-          <th class="table-active border border-dark" width=100>送料</th>
-          <td width=100 class="border border-dark"><%= $ship %></td>
-        </tr>
-        <tr>
-          <th class="table-active border border-dark" width=100>商品合計</th>
-          <td width=100 class="border border-dark"><%= @total_price %></td>
-        </tr>
-        <tr>
-          <th class="table-active border border-dark" width=100>請求金額</th>
-          <td width=100 class="border border-dark"><%= total_pay %></td>
-        </tr>
-      </table>
+    <div class="col-md-3">
+      <div class="price-confirm">
+        <table class="table-bordered">
+          <tr>
+            <th>送料</th>
+            <td><%= $ship %></td>
+          </tr>
+          <tr>
+            <th>商品合計</th>
+            <td><%= @total_price %></td>
+          </tr>
+          <tr>
+            <th>請求金額</th>
+            <td><%= total_pay %></td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
 
