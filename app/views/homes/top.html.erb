@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="row my-5">
-    <div class="mainVisual row col-md-8 offset-md-2 py-5 border">
+　<div class="row my-5">
+    <div class="mainVisual col-md-8 offset-md-2 py-5 border">
       <div class="mainVisual-text col-md-8 offset-md-2 border p-3 my-5">
         <p>
           ようこそ、ながのCAKEへ<br>
@@ -10,7 +10,7 @@
         </p>
       </div>
     </div>
-  </div>
+　</div>
   <div class="row">
     <div class="col-md-12">
       <h3 class="text-left">新着商品</h3>
@@ -18,7 +18,7 @@
   </div>
   <div class="row d-flex justify-content-center my-3">
     <% @products.reverse.each do |product| %>
-      <div class="col-md-3">
+      <div class="col-md-3 my-2">
         <%= link_to product_path(product.id), class: "text-decoration-none" do %>
           <div class="card">
             <%= attachment_image_tag(product, :image, :fill, 200, 200, fallback: "no_image.jpg") %>
@@ -31,7 +31,7 @@
       </div>
     <% end %>
     <div class="col-md-12 d-flex justify-content-end mt-3">
-       <p class="text-right"><%= link_to "全ての商品を見る>", products_path, class: "btn btn-outline-secondary" %></p>
+      <p class="text-right"><%= link_to "全ての商品を見る>", products_path, class: "btn btn-outline-secondary" %></p>
     </div>
   </div>
   <div class="row mb-5">
