@@ -1,22 +1,22 @@
 <div class="container my-5">
   <% if @cart_products.count == 0 %>
     <div class="row mb-3">
-      <div class="col-4 offset-1">
+      <div class="col-md-4 offset-md-1">
       <h4 class="bg-light text-center">ショッピングカート</h4>
       </div>
     </div>
     <h4 class="text-center mt-5">...カートには何も入っていません...</h4>
   <% else %>
     <div class="row justify-content-between">
-      <div class="col-4 mb-2">
+      <div class="col-md-4 mb-2">
         <h4 class="bg-light text-center">ショッピングカート</h4>
       </div>
-      <div class="col-3 offset-5 text-right">
+      <div class="col-md-3 offset-md-5 text-right">
         <%= link_to "カートを空にする", cart_product_destroy_all_path, method: :delete, class:"btn btn-danger" %>
       </div>
     </div>
     <div class="row mt-3">
-      <div class="col-12">
+      <div class="col-md-12">
         <table class="table-bordered">
           <thead class="cart-head">
             <tr>
@@ -52,8 +52,8 @@
       </div>
     </div>
     <div class="row mt-4">
-      <div class="col-3"><%= link_to '買い物を続ける', root_path, class:"btn btn-primary" %></div>
-      <div class="col-4 offset-5">
+      <div class="col-md-3"><%= link_to '買い物を続ける', root_path, class:"btn btn-primary" %></div>
+      <div class="col-md-4 offset-md-5">
         <table class="table-bordered">
           <tr class="total-amount">
             <td>合計金額</td><td><%= @total_price %></td>
