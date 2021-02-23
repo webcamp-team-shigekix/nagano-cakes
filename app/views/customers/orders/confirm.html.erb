@@ -51,7 +51,7 @@
 
   <div class="row-md-12 ml-3 mt-5">
     <div class="col my-3 d-flex">
-      <p class="font-weight-bold mr-3">支払方法</p><%= @way_to_pay %>
+      <p class="font-weight-bold mr-3">支払方法</p><%= @how_to_pay %>
     </div>
     <div class="col my-3 d-flex">
       <p class="font-weight-bold mr-3">お届け先</p><%= @p_code %> <%= @address %><br><%= @name %>
@@ -60,7 +60,7 @@
 
   <div class="row-md-12 d-flex justify-content-center mt-5">
     <%= form_with model: @order, local: true do |f| %>
-      <%= f.hidden_field :how_to_pay, value: params[:way_to_pay] %>
+      <%= f.hidden_field :how_to_pay %>
       <%= f.hidden_field :postal_code, value: @p_code %>
       <%= f.hidden_field :address, value: @address %>
       <%= f.hidden_field :receiver_name, value: @name %>
