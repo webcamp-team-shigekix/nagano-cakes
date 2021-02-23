@@ -2,7 +2,7 @@ class Customers::ReceiversController < ApplicationController
   before_action :authenticate_customer!
   
   def index
-    @receivers = Receiver.where(customer_id: current_customer.id)
+    @receivers = current_customer.receivers
     @receiver = Receiver.new
   end
 
@@ -11,7 +11,7 @@ class Customers::ReceiversController < ApplicationController
   end
 
   def create
-    @receivers = Receiver.where(customer_id: current_customer.id)
+    @receivers = current_customer.receivers
     @receiver = Receiver.new(receiver_params)
     if @receiver.save
       flash[:notice] = "配送先を追加しました"

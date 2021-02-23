@@ -14,14 +14,15 @@ class Admins::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @ordered_products = OrderedProduct.where(order_id: @order.id)
+    @ordered_products = @order.ordered_products
   end
 
   def update
     @order = Order.find(params[:id])
+    @ordered_products = @order.ordered_products
     if @order.update(order_params)
       if @order.order_status == 1
-        OrderedProduct.where(order_id: @order.id).each do |prod|
+        @ordered_products.each do |prod|
           prod.update(production_status: 1)
         end
         flash[:notice] = "注文ステータスが「入金確認」となったため、制作ステージが「制作待ち」に自動更新されました"

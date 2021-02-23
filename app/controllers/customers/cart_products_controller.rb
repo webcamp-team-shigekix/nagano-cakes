@@ -3,7 +3,7 @@ class Customers::CartProductsController < ApplicationController
 
   def index
     @cart_product = CartProduct.new
-    @cart_products = CartProduct.where(customer_id: current_customer.id)
+    @cart_products = current_customer.cart_products
     @total_price = 0
   end
 
@@ -13,6 +13,7 @@ class Customers::CartProductsController < ApplicationController
     if cart_product.save
       redirect_to cart_products_path
     else
+      flash[:notice] = "エラーが発生しました"
       redirect_back(fallback_location: root_path)
     end
   end

@@ -3,13 +3,13 @@ class Admins::OrderedProductsController < ApplicationController
 
   def update
     @ordered_product = OrderedProduct.find(params[:id])
-    
+    @order = @ordered_product.order
     if @ordered_product.update(prod_params)
       if @ordered_product.production_status == 2
-        @ordered_product.order.update(order_status: 2)
+        @order.update(order_status: 2)
         flash[:notice] = "制作ステータスが「製作中」となったため注文ステータスが「製作中」に更新されました"
-      elsif OrderedProduct.where(order_id: @ordered_product.order.id).count == OrderedProduct.where(order_id: @ordered_product.order.id).where(production_status: 3).count
-        @ordered_product.order.update(order_status: 3)
+      elsif @order.ordered_products.count == @order.ordered_products.where(production_status: 3).count
+        @order.update(order_status: 3)
         flash[:notice] = "制作ステータスが全て「製作完了」となったため注文ステータスが「発送準備中」に更新されました"
       else
         flash[:notice] = "制作ステータスを変更しました"

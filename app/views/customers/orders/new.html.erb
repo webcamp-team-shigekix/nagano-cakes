@@ -19,17 +19,17 @@
           <%= f.radio_button :select, 0, checked: true %>
             ご自身の住所
             <div class="col d-flex justify-content-left ml-4">
-              〒<%= current_customer.postal_code %>
-              <%= current_customer.address %><br>
-              <%= current_customer.family_name + current_customer.first_name %>
+              〒<%= @customer.postal_code %>
+              <%= @customer.address %><br>
+              <%= @customer.family_name + @customer.first_name %>
             </div>
-            <%= f.hidden_field :postal_code0, value: current_customer.postal_code %>
-            <%= f.hidden_field :address0, value: current_customer.address %>
-            <%= f.hidden_field :receiver_name0, value: current_customer.family_name + current_customer.first_name %>
+            <%= f.hidden_field :postal_code0, value: @customer.postal_code %>
+            <%= f.hidden_field :address0, value: @customer.address %>
+            <%= f.hidden_field :receiver_name0, value: @customer.family_name + @customer.first_name %>
         </label><br />
         <label class="col ml-4">
           <%= f.radio_button :select, 1 %>登録済住所から選択<br>
-          <span class="col ml-4"><%= f.collection_select :info1, Receiver.where(customer_id: current_customer.id), :postal_code, :receiver_info, class: "form-control col-md-8" %></span>
+          <span class="col ml-4"><%= f.collection_select :info1, @customer.receivers, :postal_code, :receiver_info, class: "form-control col-md-8" %></span>
         </label><br />
         <label class="col ml-4">
           <%= f.radio_button :select, 2 %>新しいお届け先<br />
