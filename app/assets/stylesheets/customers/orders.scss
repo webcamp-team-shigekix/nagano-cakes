@@ -1,0 +1,89 @@
+// Place all the styles related to the orders controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.order-info td:nth-child(1){
+  background-color: #ddd;
+  width: 150px;
+  height: 50px;
+}
+.order-info td:nth-child(2){
+  width: 300px;
+  height: 50px;
+}
+.payment-info td:nth-child(1){
+  background-color: #ddd;
+  width: 150px;
+  height: 50px;
+}
+.payment-info td:nth-child(2){
+  width: 200px;
+  height: 50px;
+}
+.order-date th:nth-child(1){
+  width: 300px;
+  height: 50px;
+}
+.order-date th:nth-child(2){
+  width: 200px;
+}
+.order-date th:nth-child(3){
+  width: 100px;
+}
+.order-date th:nth-child(4){
+  width: 100px;
+}
+.order-date td {
+  height: 50px;
+}
+.order-date p {
+  margin : 0;
+}
+
+.order-head th {
+  background-color: #ddd;
+  height: 60px;
+}
+.order-head th:nth-child(1){
+  width: 150px;
+}
+.order-head th:nth-child(2){
+  width: 400px;
+}
+.order-head th:nth-child(3){
+  width: 200px;
+}
+.order-head th:nth-child(4){
+  width: 150px;
+}
+.order-head th:nth-child(5){
+  width: 150px;
+}
+.order-head th:nth-child(6){
+  width: 150px;
+}
+
+.order-confirm th{
+  background-color: #ddd;
+}
+.order-confirm th:nth-child(1){
+  width: 360px;
+  height: 60px;
+}
+.order-confirm th:nth-child(2){
+  width: 110px;
+}
+.order-confirm th:nth-child(3){
+  width: 110px;
+}
+.order-confirm th:nth-child(4){
+  width: 110px;
+}
+.price-confirm th {
+  background-color: #ddd;
+  width: 100px;
+  height: 60px;
+}
+.price-confirm td {
+  width: 100px;
+  height: 60px;
+}

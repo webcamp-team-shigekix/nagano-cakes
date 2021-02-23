@@ -6,10 +6,8 @@
   </div>
   <div class="row">
     <div class="col-md-10 my-3">
-      <div class="info">
+      <div class="order-show">
         <table>
-          <col span="1" width=150>
-          <col span="1" width=500>
           <tr>
             <td>購入者</td>
             <td><%= @order.customer.family_name + @order.customer.first_name %></td>
@@ -59,7 +57,7 @@
     <div class="col-md-9 mb-4">
       <div class="products">
         <table class="table table-borderless" style="table-layout:fixed;">
-          <thead class="thead-light">
+          <thead>
             <tr>
               <th>商品名</th>
               <th>単価（税込）</th>
@@ -102,22 +100,22 @@
       </div>
     </div>
     <div class="col-md-3 d-flex justify-content-center align-items-end mb-5">
-      <div class="payment-info">
-          <table cellpadding="5">
-            <tr>
-              <td><strong>商品合計</strong></td>
-              <td><%= @order.total_payment - $ship %></td>
-            </tr>
-            <tr>
-              <td><strong>配送料</strong></td>
-              <td><%= $ship %></td>
-            </tr>
-            <tr>
-              <td><strong>請求金額合計</strong></td>
-              <td><strong><%= @order.total_payment %></strong></td>
-            </tr>
-          </table>
-        </div>
+      <div class="payment-info-show">
+        <table>
+          <tr>
+            <td><strong>商品合計</strong></td>
+            <td><%= @order.total_payment - $ship %></td>
+          </tr>
+          <tr>
+            <td><strong>配送料</strong></td>
+            <td><%= $ship %></td>
+          </tr>
+          <tr>
+            <td><strong>請求金額合計</strong></td>
+            <td><strong><%= @order.total_payment %></strong></td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
 </div>
