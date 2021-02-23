@@ -11,16 +11,12 @@ class Customers::OrdersController < ApplicationController
 
   def confirm
     @customer = current_customer
-    if params[:way_to_pay]
-    else
-      redirect_to new_orders_path
-    end
     @order = Order.new
-    case params[:way_to_pay]
+    case params[:how_to_pay]
     when "0"
-      @way_to_pay = "クレジットカード"
+      @how_to_pay = "クレジットカード"
     when "1"
-      @way_to_pay = "銀行振込"
+      @how_to_pay = "銀行振込"
     end
 
     case params[:select]
@@ -29,8 +25,8 @@ class Customers::OrdersController < ApplicationController
       @address = params[:address0]
       @name = params[:receiver_name0]
     when "1"
-      if current_customer.receivers.count != 0
-        receiver = Receiver.find_by(postal_code: params[:info1])
+      if @customer.receivers.count != 0
+        receiver = Receiver.find_by(postal_code: params[:postal_code1])
         @p_code = receiver.postal_code
         @address = receiver.address
         @name = receiver.name
@@ -50,7 +46,7 @@ class Customers::OrdersController < ApplicationController
     end
 
     @total_price = 0
-    @cart_products = current_customer.cart_products
+    @cart_products = @customer.cart_products
   end
 
   def create
