@@ -1,0 +1,30 @@
+// Place all the styles related to the customers/CartProducts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.cart-head {
+  background-color: #ddd;
+}
+.cart-head th:nth-child(1){
+  width: 410px;
+  height: 60px;
+}
+.cart-head th:nth-child(2){
+  width: 180px;
+}
+.cart-head th:nth-child(3){
+  width: 180px;
+}
+.cart-head th:nth-child(4){
+  width: 180px;
+}
+.cart-head th:nth-child(5){
+  width: 180px;
+}
+.total-amount td:nth-child(1){
+  background-color: #ddd;
+  width: 185px;
+  height: 60px;
+}
+.total-amount td:nth-child(2){
+  width: 185px;
+}

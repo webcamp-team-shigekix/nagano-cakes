@@ -1,0 +1,20 @@
+// Place all the styles related to the customers/customers controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.my-head td:nth-child(1){
+  width: 150px;
+}
+.my-body td:nth-child(1){
+  background-color: #ddd;
+  width: 150px;
+  height: 50px;
+}
+.my-body td:nth-child(2){
+  width: 400px;
+}
+.receiver td {
+   width: 150px;
+}
+.order td {
+   width: 150px;
+}

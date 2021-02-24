@@ -1,0 +1,36 @@
+<div class="container my-5">
+    <div class="col-md-4 offset-md-1">
+      <h4 class="bg-light text-center">ジャンル一覧・追加</h4>
+    </div>
+  <div class="row my-3">
+    <div class="offset-md-2 col-md-8">
+      <%= form_with model:[:admins,@product_type_new], local:true do |f| %>
+        <div class="form-group row">
+          <%= f.label :name, "ジャンル名", class: "col-md-2" %>
+          <%= f.text_field :name, class: "form-control col-md-7" %>
+          <%= f.submit "新規登録", class: 'btn btn-success offset-md-1 col-md-2' %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 offset-md-4">
+      <table class="table table-hover">
+        <thead>
+          <tr class="table-secondary">
+            <th>ジャンル</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @product_types.each do |product_type| %>
+            <tr>
+              <td><%= product_type.name %></td>
+              <td class="text-right"><%= link_to '編集する', edit_admins_product_type_path(product_type.id), class: "btn btn-success" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<div class="container my-5">
+  <div class="row mb-3">
+    <div class="col-md-2 offset-md-1">
+      <h4 class="bg-light text-center">商品一覧</h4>
+    </div>
+    <div class="col-md-6 offset-md-2 text-right">
+      <%= link_to "　+　", new_admins_product_path, class: "btn btn-light btn-md border p-0" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <table class="table table-hover border-bottom">
+        <thead>
+          <tr class="table-secondary">
+            <th>商品ID</th>
+            <th>商品名</th>
+            <th>税抜価格</th>
+            <th>ジャンル</th>
+            <th>ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @products.each do |product| %>
+            <tr>
+              <td><%= product.id %></td>
+              <td><%= link_to "#{product.name}",admins_product_path(product) %></td>
+              <td><%= converting_to_jpy(product.price) %></td>
+              <td><%= product.product_type.name %></td>
+              <td>
+                <% if product.is_active %>
+                  <span class="text-success">販売中</span>
+                <% else %>
+                  <span class="text-secondary">販売停止中</span>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center">
+　　<%= paginate @products %>
+  </div>
+</div>

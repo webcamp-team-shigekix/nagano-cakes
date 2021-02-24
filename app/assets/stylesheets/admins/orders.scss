@@ -1,0 +1,24 @@
+// Place all the styles related to the admins::orders controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.order-list th {
+  background-color: #ddd;
+  width: 184px;
+}
+.order-show td:nth-child(1){
+  width: 150px;
+}
+.order-show td:nth-child(2){
+  width: 550px;
+}
+.products th {
+  background-color: #ddd;
+}
+.payment-info-show td:nth-child(1) {
+  width: 100px;
+  height: 40px;
+}
+.payment-info-show td:nth-child(2) {
+  width: 100px;
+  height: 40px;
+}

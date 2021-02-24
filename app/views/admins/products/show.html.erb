@@ -1,0 +1,41 @@
+<div class="container my-5">
+  <div class="row">
+    <div class="col-md-2 offset-1">
+      <h4 class="bg-light text-center">商品詳細</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 offset-md-2"><%= attachment_image_tag(@product, :image, fallback: "no_image.jpg", size: "250x250" ) %></div>
+    <div class="col-md-4 py-3">
+      <table class="table">
+        <tr>
+          <td>商品名</td>
+          <td><%= @product.name %></td>
+        </tr>
+        <tr>
+          <td>商品説明</td>
+          <td><%= @product.description %></td>
+        </tr>
+        <tr>
+          <td>ジャンル</td>
+          <td><%= @product.product_type.name %></td>
+        </tr>
+        <tr>
+          <td>税込価格（税抜価格）</td>
+          <td><%= converting_to_jpy((@product.price * $tax).round) %> (<%= converting_to_jpy((@product.price).round) %>)<span class="small"> 円</span></td>
+        </tr>
+        <tr>
+          <td>販売ステータス</td>
+          <td>
+            <% if @product.is_active %>
+              <span class="text-success">販売中</span>
+            <% else %>
+              <span class="text-danger">販売中止</span>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="col-md-12 text-center"><%= link_to '編集する', edit_admins_product_path, class: "btn btn-success" %></div>
+</div>
