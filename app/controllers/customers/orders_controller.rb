@@ -50,8 +50,7 @@ class Customers::OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(order_params)
-    @order.customer_id = current_customer.id
+    @order = current_customer.orders.new(order_params)
     @order.shipping_cost = $ship
     if @order.save
       # カート内商品の種類の数だけ@ordered_productを作ってカラムに値入れて全部save、その後カート内全削除
