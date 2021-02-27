@@ -21,37 +21,31 @@ class Customers::OrdersController < ApplicationController
 
     case params[:select]
     when "0"
-      @p_code = params[:postal_code0]
-      @address = params[:address0]
-      @name = params[:receiver_name0]
+      @order.get_shipping_informations_from(@customer)
     when "1"
       if @customer.receivers.count != 0
-        receiver = Receiver.find_by(postal_code: params[:postal_code1])
-        @p_code = receiver.postal_code
-        @address = receiver.address
-        @name = receiver.name
+        @selected_address = @customer.receivers.find(params[:receiver_id])
+        @order.get_shipping_informations_from(@selected_address)
       else
         flash[:notice] = "配送先は登録されていません"
-        render :new
+        redirect_to new_orders_path
       end
     when "2"
-      if params[:postal_code2].blank? || params[:address2].blank? || params[:receiver_name2].blank?
+      if params[:postal_code].blank? || params[:address].blank? || params[:receiver_name].blank?
         flash[:notice] = "選択されたフォームに空欄があります"
-        render :new
+        redirect_to new_orders_path
       else
-        @p_code = params[:postal_code2]
-        @address = params[:address2]
-        @name = params[:receiver_name2]
+        @order.postal_code = params[:postal_code]
+        @order.address = params[:address]
+        @order.receiver_name = params[:receiver_name]
       end
     end
 
     @total_price = 0
-    @cart_products = @customer.cart_products
   end
 
   def create
-    @order = Order.new(order_params)
-    @order.customer_id = current_customer.id
+    @order = current_customer.orders.new(order_params)
     @order.shipping_cost = $ship
     if @order.save
       # カート内商品の種類の数だけ@ordered_productを作ってカラムに値入れて全部save、その後カート内全削除
