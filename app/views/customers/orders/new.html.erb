@@ -5,7 +5,7 @@
     </div>
   </div>
   <div class="row-md-12 my-3 ml-3">
-    <%= form_with url: orders_confirm_path, local: true do |f| %>
+    <%= form_with model: @order, url: orders_confirm_path, local: true do |f| %>
       <div class="how-to-pay">
         <h5>支払い方法</h5>
         <div class="col ml-4">
@@ -23,13 +23,10 @@
               <%= @customer.address %><br>
               <%= @customer.family_name + @customer.first_name %>
             </div>
-            <%= f.hidden_field :postal_code0, value: @customer.postal_code %>
-            <%= f.hidden_field :address0, value: @customer.address %>
-            <%= f.hidden_field :receiver_name0, value: @customer.family_name + @customer.first_name %>
         </label><br />
         <label class="col ml-4">
           <%= f.radio_button :select, 1 %>登録済住所から選択<br>
-          <span class="col ml-4"><%= f.collection_select :postal_code1, @customer.receivers, :postal_code, :receiver_info, class: "form-control col-md-8" %></span>
+          <span class="col ml-4"><%= f.collection_select :receiver_id, @customer.receivers, :id, :receiver_info, class: "form-control col-md-8" %></span>
         </label><br />
         <label class="col ml-4">
           <%= f.radio_button :select, 2 %>新しいお届け先<br />
@@ -40,9 +37,9 @@
               宛名
             </div>
             <div class="md-8">
-              <%= f.text_field :postal_code2 %><br>
-              <%= f.text_field :address2, size: 60 %><br>
-              <%= f.text_field :receiver_name2 %>
+              <%= f.text_field :postal_code %><br>
+              <%= f.text_field :address, size: 60 %><br>
+              <%= f.text_field :receiver_name %>
             </div>
           </div>
         </label>
